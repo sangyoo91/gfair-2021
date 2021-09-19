@@ -83,6 +83,7 @@ export default {
 .footer
   padding: 32px 0 128px
   background-color: #EFEFEF
+  border-top: 1px solid rgba(black, 0.05)
 
 .container
   display: flex

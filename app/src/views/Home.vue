@@ -21,14 +21,58 @@
 
     </section>
 
-    <section class="section--anywhere">
+    <section class="section section--anywhere">
       <div class="container">
         <div class="text">
           <h2>From anywhere by your convenience, with your computer or phone.</h2>
           <p>
             Korea Online Trade Meet is held online. This means as long as you have access to the internet,
-            with any smart devices or a computer, you can participate in meeting companies you are interested in.
+            with any smart devices or a computer, you can meet companies you are interested in.
           </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--network">
+      <div class="container align-right">
+        <div class="text text-right">
+          <h2>A wide selection of different companies and products</h2>
+          <p>
+            We have a wide selection of companies and products that you can choose from across a variety of industries.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--categories">
+      <div class="container no-flex">
+        <div class="text text-center">
+          <h2>Korea Trade Meeting Products</h2>
+          <p>
+            These are the product categories that will be shown in Online.
+          </p>
+        </div>
+        <div class="categories-wrapper">
+          <div class="category-item">
+            <div class="title">
+              Beauty & Health
+            </div>
+          </div>
+          <div class="category-item">
+            <div class="title">
+              Consumer Products & Food
+            </div>
+          </div>
+          <div class="category-item">
+            <div class="title">
+              Electronics & Electrical Products
+            </div>
+          </div>
+          <div class="category-item">
+            <div class="title">
+              Industrial & Medical Products
+            </div>
+          </div>
 
         </div>
       </div>
@@ -59,18 +103,21 @@ export default {
   margin: 0 auto
   padding: 0 16px
 
-.title
-  color: white
+  .text > .title
+  & > .title
+    color: white
 
-.title h2
-  font-size: 14px
-  margin: 0
-  text-align: center
+  .text > .title h2
+  & > .title h2
+    font-size: 14px
+    margin: 0
+    text-align: center
 
-.title h1
-  margin: 0
-  font-size: 32px
-  text-align: center
+  .text > .title h1
+  & > .title h1
+    margin: 0
+    font-size: 32px
+    text-align: center
 
 .mast p
   max-width: 520px
@@ -90,11 +137,46 @@ export default {
   font-size: 1.25rem
   color: white
 
-section.section--anywhere
+section.section
   padding: 72px 0 128px
 
-section.section--anywhere .text
+section.section > .container
+  display: flex
+  &.no-flex
+    display: block
+
+section.section > .container.align-right
+  justify-content: flex-end
+
+section.section .text
   max-width: 50%
 
+  &.text-right
+    text-align: right
 
+  &.text-center
+    max-width: 100%
+    text-align: center
+
+.categories-wrapper
+  display: flex
+  align-items: center
+  justify-content: center
+  margin-top: 40px
+
+.category-item
+  margin: 0 16px
+  width: 200px
+  height: 200px
+  display: flex
+  align-items: center
+  justify-content: center
+  flex-direction: column
+  text-align: center
+  background-color: #EFEFEF
+  border-radius: 16px
+  padding: 16px
+
+  .title
+    font-size: 1.15rem
 </style>
