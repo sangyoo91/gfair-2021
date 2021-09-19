@@ -1,7 +1,8 @@
 <template>
+<div class="navbar-outer">
   <div class="navbar">
+    <Notice v-on:click="closeNotice" v-if="notice"/>
     <div class="navbar-inner">
-
       <div class="navbar-logo">
         <svgLogo class="svg"/>
         <div class="text">
@@ -16,29 +17,46 @@
 
     </div>
   </div>
+</div>
 </template>
 
 <script>
 import Button from '@/components/el/button'
 import svgLogo from '@/components/svg/svgLogo'
+import Notice from '@/components/Notice'
 
 export default {
+  data() {
+    return {
+      notice: true
+    }
+  },
+  methods: {
+    closeNotice() {
+      this.notice = false
+    }
+  },
   components: {
     svgLogo,
-    Button
+    Button,
+    Notice
   }
 }
 </script>
 
 <style lang="stylus" scoped>
 
-.navbar
+.navbar-outer
   position: fixed
-  top: 16px
+  top: 0
   left: 0
   right: 0
-  height: var(--navbar-height)
+
+.navbar
+  height: calc( var(--navbar-height) + 16px )
   color: white
+
+
 
 .navbar-inner
   max-width: 1024px + 16px

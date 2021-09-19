@@ -1,8 +1,27 @@
 <template>
-  <button>
+  <button :class="{
+    'button--sm': size === 'small',
+    'button--rounded': rounded
+  }" v-on:click="$emit('click')">
     <slot/>
   </button>
 </template>
+
+<script>
+export default {
+  props: {
+    size: {
+      default: "normal",
+      type: String
+    },
+    rounded: {
+      default: false,
+      type: Boolean
+    }
+  }
+}
+</script>
+
 
 <style lang="stylus" scoped>
 
@@ -12,7 +31,6 @@ button
   color: var(--color-primary)
   background-color: white
   font-weight: 600
-  font-size: 14px
   border: 1px solid transparent
   border-radius: var(--button-border-radius)
   text-transform: uppercase
@@ -22,6 +40,13 @@ button
               border-color .15s ease-in-out,
               box-shadow .15s ease-in-out
   user-select: none
+
+  &.button--sm
+    font-size: 0.75rem
+    padding: 0.5rem 1.0rem
+
+  &.button--rounded
+    border-radius: 1rem
 
 button:hover
   transform: translate3d(0, -1px, 0)
