@@ -19,7 +19,7 @@ export default new Vuex.Store({
   },
   getters: {
     getCompanies({companies}) {
-      return companies
+      return companies.filter((c)=> c && c.name)
     }
   },
   actions: {
