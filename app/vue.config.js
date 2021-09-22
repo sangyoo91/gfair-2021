@@ -11,9 +11,6 @@ module.exports = {
       }
     }
   },
-
-  outputDir:  path.resolve(__dirname, "../../dist"),
-
   pluginOptions: {
     i18n: {
       locale: 'en',
