@@ -54,23 +54,35 @@
         </div>
         <div class="categories-wrapper">
           <div class="category-item">
+            <div class="date">
+              {{$t('date_beauty')}}
+            </div>
             <div class="title">
-              Beauty & Health
+              {{$t('cat_beauty')}}
             </div>
           </div>
           <div class="category-item">
+            <div class="date">
+              {{$t('date_consumer')}}
+            </div>
             <div class="title">
-              Consumer Products & Food
+              {{$t('cat_consumer')}}
             </div>
           </div>
           <div class="category-item">
+            <div class="date">
+              {{$t('date_electronics')}}
+            </div>
             <div class="title">
-              Electronics & Electrical Products
+              {{$t('cat_electronics')}}
             </div>
           </div>
           <div class="category-item">
+            <div class="date">
+              {{$t('date_industrial')}}
+            </div>
             <div class="title">
-              Industrial & Medical Products
+              {{$t('cat_industrial')}}
             </div>
           </div>
 
