@@ -11,9 +11,14 @@
         </div>
       </div>
 
-      <Button>
-        {{$t('apply_now')}}
-      </Button>
+      <div class="menu">
+        <Button v-on:click="gotoCompanies">
+          {{$t('companies')}}
+        </Button>
+        <Button>
+          {{$t('apply_now')}}
+        </Button>
+      </div>
 
     </div>
   </div>
@@ -34,6 +39,9 @@ export default {
   methods: {
     closeNotice() {
       this.notice = false
+    },
+    gotoCompanies() {
+      this.$router.push({name: 'Companies'})
     }
   },
   components: {
@@ -84,4 +92,7 @@ export default {
   font-size: 12px
   font-weight: 700
   margin-left: 4px
+
+.navbar .menu button
+  margin-left: 8px
 </style>
