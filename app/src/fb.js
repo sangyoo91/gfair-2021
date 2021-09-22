@@ -9,9 +9,10 @@ const firebaseConfig = {
   projectId: "gfair2021-14929",
   storageBucket: "gfair2021-14929.appspot.com",
   messagingSenderId: "86451216946",
-  appId: "1:86451216946:web:da2eb1f64f6652bccdd22b",
-  measurementId: "G-VVPCNXYS3V"
+  appId: "1:86451216946:web:d1394d82e08f8bfacdd22b",
+  measurementId: "G-Q0YK2CZ3MS"
 };
+
 const main = firebase.initializeApp(firebaseConfig)
 
 // utils
