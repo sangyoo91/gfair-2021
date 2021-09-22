@@ -3,7 +3,14 @@ const path = require("path")
 module.exports = {
   publicPath: '',
   filenameHashing: false,
-
+  chainWebpack: config => {
+    config
+        .plugin('html')
+        .tap(args => {
+            args[0].title = "G-Trade 2021 - Good Merchandise Online Trade Enquiry";
+            return args;
+        })
+  },
   css: {
     loaderOptions: {
       stylus: {
