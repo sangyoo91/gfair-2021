@@ -9,11 +9,23 @@
 <script>
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import {db} from '@/fb'
 
 export default {
   components: {
     Navbar,
     Footer
+  },
+  created() {
+    this.loadCompanies()
+  },
+  methods: {
+    async loadCompanies() {
+      console.log("request Load Companies")
+      const data = await db.collection('companies').get()
+      this.$store.commit("SET_COMPANIES_FROM_DOCS", data.docs)
+      console.log("loadCompanies", data)
+    }
   }
 }
 </script>

@@ -60,6 +60,9 @@
             <div class="title">
               {{$t('cat_beauty')}}
             </div>
+            <div class="company-count">
+              {{getCompanyCountByCategoryName('Beauty & Health')}} Companies
+            </div>
           </div>
           <div class="category-item">
             <div class="date">
@@ -67,6 +70,9 @@
             </div>
             <div class="title">
               {{$t('cat_consumer')}}
+            </div>
+            <div class="company-count">
+              {{getCompanyCountByCategoryName('Consumer Products')}} Companies
             </div>
           </div>
           <div class="category-item">
@@ -76,6 +82,9 @@
             <div class="title">
               {{$t('cat_electronics')}}
             </div>
+            <div class="company-count">
+              {{getCompanyCountByCategoryName('Electronics & Electrical Products')}} Companies
+            </div>
           </div>
           <div class="category-item">
             <div class="date">
@@ -83,6 +92,9 @@
             </div>
             <div class="title">
               {{$t('cat_industrial')}}
+            </div>
+            <div class="company-count">
+              {{getCompanyCountByCategoryName('Industrial & Medical Products')}} Companies
             </div>
           </div>
 
@@ -97,6 +109,16 @@
 export default {
   name: 'Home',
   components: {
+  },
+  methods: {
+    getCompanyCountByCategoryName(cat) {
+      return this.companies.filter((c)=> c &&  c.category && c.category.nameEN === cat).length
+    }
+  },
+  computed: {
+    companies() {
+      return this.$store.getters.getCompanies
+    },
   }
 }
 </script>
