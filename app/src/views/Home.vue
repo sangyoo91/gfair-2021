@@ -13,7 +13,7 @@
             Date
           </label>
           <div class="date">
-            September 9th ~ 12th
+            {{$t('date_verbose')}}
           </div>
 
         </div>
@@ -67,7 +67,7 @@
           </p>
         </div>
         <div class="categories-wrapper">
-          <div class="category-item">
+          <div class="category-item" v-on:click="setRouteCategory('beauty-health')">
             <div class="date">
               {{$t('date_beauty')}}
             </div>
@@ -78,7 +78,7 @@
               {{getCompanyCountByCategoryName('Beauty & Health')}} Companies
             </div>
           </div>
-          <div class="category-item">
+          <div class="category-item" v-on:click="setRouteCategory('consumer-products')">
             <div class="date">
               {{$t('date_consumer')}}
             </div>
@@ -89,7 +89,7 @@
               {{getCompanyCountByCategoryName('Consumer Products')}} Companies
             </div>
           </div>
-          <div class="category-item">
+          <div class="category-item" v-on:click="setRouteCategory('electronics-electrical-products')">
             <div class="date">
               {{$t('date_electronics')}}
             </div>
@@ -100,7 +100,7 @@
               {{getCompanyCountByCategoryName('Electronics & Electrical Products')}} Companies
             </div>
           </div>
-          <div class="category-item">
+          <div class="category-item" v-on:click="setRouteCategory('industrial-medical-products')">
             <div class="date">
               {{$t('date_industrial')}}
             </div>
@@ -126,10 +126,21 @@ export default {
   components: {
     FeaturedProducts
   },
+  mounted () {
+    window.scrollTo(0, 0)
+  },
   methods: {
     getCompanyCountByCategoryName(cat) {
       return this.companies.filter((c)=> c &&  c.category && c.category.nameEN === cat).length
-    }
+    },
+    setRouteCategory(categoryName) {
+      this.$router.push({
+        name: "Companies",
+        params: {
+          categoryName: categoryName
+        }
+      })
+    },
   },
   computed: {
     companies() {

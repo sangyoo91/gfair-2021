@@ -125,6 +125,9 @@
 
 <script>
 export default {
+  mounted () {
+    window.scrollTo(0, 0)
+  },
   methods: {
     getCompanyCountByCategoryName(cat) {
       return this.allCompanies.filter((c)=> c &&  c.category && c.category.id === cat).length
@@ -232,6 +235,9 @@ export default {
   .date
     font-size: 12px
     margin-bottom: 6px
+    padding: 4px
+    background-color: #F5F5F5
+    border-radius: 2px
   .title
     font-size: 16px
   .company-count
@@ -249,7 +255,8 @@ export default {
     opacity: 0
 .category-item-wrapper.active .category-item
   // background-color: rgba(#5e72e4)
-  font-weight: 700
+  .title
+    font-weight: 700
   &:before
     opacity: 1
 

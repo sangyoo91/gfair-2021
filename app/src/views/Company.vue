@@ -74,6 +74,9 @@
 
 <script>
 export default {
+  mounted () {
+    window.scrollTo(0, 0)
+  },
   computed: {
     company() {
       return this.$store.getters['getCompanyById'](this.$route.params.companyId)

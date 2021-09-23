@@ -13,8 +13,12 @@
             <img :src="product.images[0].image.url"/>
           </div>
           <div class="product-meta">
-            <div class="product-meta-head">
-
+            <router-link class="product-meta-head" :to="{
+              name: 'Company',
+              params: {
+                companyId: product.companyId
+              }
+            }">
               <div class="product-company-name">
                 <div class="logo">
                   <img :src="product.companyLogoUrl" alt="">
@@ -25,7 +29,7 @@
                 {{$getFromLang(product.name)}}
               </div>
 
-            </div>
+            </router-link>
             <div class="product-desc">
               <div class="line-clamp">
                 {{$getFromLang(product.desc)}}
@@ -92,13 +96,18 @@ export default {
 
 
 .product-meta-head
+  display: block
   padding: 8px 16px
   border-bottom: 1px solid #EFEFEF
+  text-decoration: none
+  &:hover
+    text-decoration: underline
+    text-decoration-color: var(--color-primary)
 
 .product-company-name
   display: flex
   align-items: center
-  text-decoration: underline
+  text-decoration: none
   color: var(--color-primary)
   font-size: 14px
   margin-bottom: 4px
@@ -116,6 +125,7 @@ export default {
   font-size: 18px
   // margin-bottom: 8px
   font-weight: bold
+  color: #333
 
 .product-desc
   font-size: 14px
