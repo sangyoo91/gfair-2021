@@ -11,12 +11,28 @@ const routes = [
     component: Home
   },
   {
-    path: '/companies',
+    path: '/companies/:categoryName?',
     name: 'Companies',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "companies" */ '../views/Companies.vue')
+  },
+  {
+    path: '/apply-now',
+    name: 'ApplyNow',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "companies" */ '../views/ApplyNow.vue')
+  },
+  {
+    path: '/company/:companyId',
+    name: 'Company',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "companies" */ '../views/Company.vue')
   }
 ]
 

@@ -17,11 +17,13 @@
         }">
           <div class="menu" v-if="isDropdownOpen">
             <div class="item" v-for="lang, index in langs" :key="index" v-on:click="selectLang(lang.lang, $event)">
+              <img :src="require(`@/assets/lang/${lang.icon}.png`)" alt="">
               {{lang.label}}
             </div>
           </div>
           <div class="menu" v-else>
             <div class="item">
+              <img :src="require(`@/assets/lang/${currentLang.icon}.png`)" alt="">
               {{currentLang.label}}
             </div>
           </div>
@@ -40,10 +42,12 @@ export default {
       langs: [
         {
           lang: "en",
+          icon: "EN",
           label: "English"
         },
         {
           lang: "vn",
+          icon: "VN",
           label: "Tiếng Việt"
         }
       ],
@@ -135,6 +139,15 @@ export default {
   top: 0
   right: 0
   left: 0
+  .item
+    display: flex
+    align-items: center
+    font-size: 14px
+
+  .item img
+    height: 18px
+    width: auto
+    margin-right: 8px
 
 // .dropdown.is-open
 //   overflow: visible
@@ -149,8 +162,8 @@ export default {
   padding: 8px
   border-radius: 8px
   box-shadow: 0 4px 8px rgba(50, 50, 93, 0.05), 0 3px 9px rgba(0, 0, 0, 0.08)
-
   .item:hover
     background-color: rgba(black, 0.015)
+
 
 </style>

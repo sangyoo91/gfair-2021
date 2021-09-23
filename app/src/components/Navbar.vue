@@ -1,7 +1,7 @@
 <template>
 <div class="navbar-outer">
+  <Notice v-on:click="closeNotice" v-if="notice"/>
   <div class="navbar">
-    <Notice v-on:click="closeNotice" v-if="notice"/>
     <div class="container">
       <router-link class="navbar-logo" :to="{name: 'Home'}">
         <svgLogo class="svg"/>
@@ -15,7 +15,7 @@
         <button v-on:click="gotoCompanies" class="menu-item">
           {{$t('companies')}}
         </button>
-        <Button>
+        <Button v-on:click="gotoApplication">
           {{$t('apply_now')}}
         </Button>
       </div>
@@ -33,16 +33,24 @@ import Notice from '@/components/Notice'
 export default {
   data() {
     return {
-      notice: true
     }
   },
   methods: {
     closeNotice() {
-      this.notice = false
+      this.$store.commit("SET_NOTICE", false)
     },
     gotoCompanies() {
       if (this.$route.name !== "Companies")
         this.$router.push({name: 'Companies'})
+    },
+    gotoApplication() {
+      if (this.$route.name !== "ApplyNow")
+        this.$router.push({name: 'ApplyNow'})
+    }
+  },
+  computed: {
+    notice() {
+      return this.$store.getters.getNotice
     }
   },
   components: {
@@ -63,9 +71,10 @@ export default {
   z-index: 999
 
 .navbar
-  height: calc( var(--navbar-height) + 16px )
-  color: white
-
+  height: calc( var(--navbar-height))
+  color: #333
+  background-color: white
+  border-bottom: 1px solid #EFEFEF
 
 
 .container
@@ -81,13 +90,13 @@ a.navbar-logo
   display: flex
   align-items: center
   user-select: none
-  color: white
+  color: var(--color-primary)
   text-decoration: none
   outline: 0
   border-radius: 4px
 
   &:focus
-    box-shadow: 0 0 0 4px rgba(white, 0.25)
+    box-shadow: 0 0 0 4px rgba(#5e72e4, 0.25)
 
 .navbar-logo svg
   display: block
@@ -109,11 +118,11 @@ button.menu-item
   padding: 6px 6px
   border-radius: 4px
   background-color: transparent
-  color: rgba(white, 1.0)
+  color: #666
   &:hover
-    background-color: rgba(white, 0.15)
+    background-color: rgba(black, 0.075)
   &:focus
-    box-shadow: 0 0 0 4px rgba(white, 0.25)
+    box-shadow: 0 0 0 4px rgba(#5e72e4, 0.25)
 
 
 </style>

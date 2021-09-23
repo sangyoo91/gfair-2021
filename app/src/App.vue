@@ -1,7 +1,11 @@
 <template>
   <div id="app">
     <Navbar/>
-    <router-view/>
+    <div class="app-content" :class="{
+      'has-notice': notice
+    }">
+      <router-view/>
+    </div>
     <Footer/>
   </div>
 </template>
@@ -26,6 +30,11 @@ export default {
       this.$store.commit("SET_COMPANIES_FROM_DOCS", data.docs)
       console.log("loadCompanies", data)
     }
+  },
+  computed: {
+    notice() {
+      return this.$store.getters.getNotice
+    }
   }
 }
 </script>
@@ -48,6 +57,14 @@ body
 
 #app
   flex: 1
+  display: flex
+  flex-direction: column
+
+.app-content
+  flex: 1
+  padding-bottom: 2rem
+  &.has-notice
+    padding-top: var(--navbar-height)
 
 h1, h2, h3
   font-weight: 400

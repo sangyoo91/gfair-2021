@@ -10,7 +10,22 @@
     </section>
     <div class="container">
       <div class="categories-wrapper">
-          <div class="category-item-wrapper">
+          <div class="category-item-wrapper" :class="{
+            active: !$route.params.categoryName || $route.params.categoryName === 'all'
+          }" v-on:click="setRouteCategory('all')">
+            <div class="category-item">
+
+              <div class="title">
+                {{$t('cat_all')}}
+              </div>
+              <div class="company-count">
+                {{allCompanies.length}} Companies
+              </div>
+            </div>
+          </div>
+          <div class="category-item-wrapper" :class="{
+            active: $route.params.categoryName === 'beauty-health'
+          }" v-on:click="setRouteCategory('beauty-health')">
             <div class="category-item">
               <div class="date">
                 {{$t('date_beauty')}}
@@ -19,11 +34,13 @@
                 {{$t('cat_beauty')}}
               </div>
               <div class="company-count">
-                {{getCompanyCountByCategoryName('Beauty & Health')}} Companies
+                {{getCompanyCountByCategoryName('beauty-health')}} Companies
               </div>
             </div>
           </div>
-          <div class="category-item-wrapper">
+          <div class="category-item-wrapper" :class="{
+            active: $route.params.categoryName === 'consumer-products'
+          }" v-on:click="setRouteCategory('consumer-products')">
             <div class="category-item">
               <div class="date">
                 {{$t('date_consumer')}}
@@ -32,11 +49,13 @@
                 {{$t('cat_consumer')}}
               </div>
               <div class="company-count">
-                {{getCompanyCountByCategoryName('Consumer Products')}} Companies
+                {{getCompanyCountByCategoryName('consumer-products')}} Companies
               </div>
             </div>
           </div>
-          <div class="category-item-wrapper">
+          <div class="category-item-wrapper" :class="{
+            active: $route.params.categoryName === 'electronics-electrical-products'
+          }" v-on:click="setRouteCategory('electronics-electrical-products')">
             <div class="category-item">
               <div class="date">
                 {{$t('date_electronics')}}
@@ -45,11 +64,13 @@
                 {{$t('cat_electronics')}}
               </div>
               <div class="company-count">
-                {{getCompanyCountByCategoryName('Electronics & Electrical Products')}} Companies
+                {{getCompanyCountByCategoryName('electronics-electrical-products')}} Companies
               </div>
             </div>
           </div>
-          <div class="category-item-wrapper">
+          <div class="category-item-wrapper" :class="{
+            active: $route.params.categoryName === 'industrial-medical-products'
+          }" v-on:click="setRouteCategory('industrial-medical-products')">
             <div class="category-item">
               <div class="date">
                 {{$t('date_industrial')}}
@@ -58,7 +79,7 @@
                 {{$t('cat_industrial')}}
               </div>
               <div class="company-count">
-                {{getCompanyCountByCategoryName('Industrial & Medical Products')}} Companies
+                {{getCompanyCountByCategoryName('industrial-medical-products')}} Companies
               </div>
             </div>
           </div>
@@ -80,7 +101,12 @@
               {{company.boothNumber}}
             </div>
             <div class="cell">
-              <a href>{{company.name[lang]}}</a>
+              <router-link :to="{
+                name: 'Company',
+                params: {
+                  companyId: company.id
+                }
+              }">{{company.name[lang]}}</router-link>
             </div>
             <div class="cell">
               <span v-if="company.products.length > 0">
@@ -101,14 +127,37 @@
 export default {
   methods: {
     getCompanyCountByCategoryName(cat) {
-      return this.companies.filter((c)=> c &&  c.category && c.category.nameEN === cat).length
-    }
+      return this.allCompanies.filter((c)=> c &&  c.category && c.category.id === cat).length
+    },
+    setRouteCategory(categoryName) {
+      if (this.$route.params.categoryName !== categoryName) {
+        this.$router.replace({
+          name: this.$route.name,
+          params: {
+            categoryName: categoryName
+          }
+        })
+      }
+    },
   },
   computed: {
-    companies() {
+    allCompanies() {
       return this.$store.getters['getCompanies']
     },
-
+    companies() {
+      let companies = this.allCompanies
+      let param = this.$route.params.categoryName
+      if (!param || param === 'all' || ![
+        'beauty-health',
+        'consumer-products',
+        'electronics-electrical-products',
+        'industrial-medical-products'
+      ].includes(param)) {
+        return companies
+      } else {
+        return companies.filter((c)=> c.category && c.category.id === param)
+      }
+    },
     lang() {
       return this.$i18n.locale
     }
@@ -165,12 +214,14 @@ export default {
   // border: 1px solid #EFEFEF
   box-shadow: 0 8px 16px rgba(black, 0.075), 0 -8px 8px rgba(black, 0.075)
   display: grid
-  grid-template-columns: 1fr 1fr 1fr 1fr
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr
+  overflow: hidden
   // display: flex
   // align-items: center
   // justify-content: center
 
 .category-item
+  position: relative
   display: flex
   align-items: center
   justify-content: center
@@ -186,4 +237,22 @@ export default {
   .company-count
     margin-top: 8px
     font-size: 12px
+  &:before
+    position: absolute
+    bottom: 0
+    left: 0
+    right: 0
+    content: ""
+    height: 4px
+    // background-color: var(--color-primary)
+    background: linear-gradient(150deg,#281483 15%,#8f6ed5 70%,#d782d9 94%)
+    opacity: 0
+.category-item-wrapper.active .category-item
+  // background-color: rgba(#5e72e4)
+  font-weight: 700
+  &:before
+    opacity: 1
+
+
+
 </style>

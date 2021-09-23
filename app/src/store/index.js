@@ -6,7 +6,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     companies: [],
-    products: []
+    products: [],
+    isNotice: true,
   },
   mutations: {
     SET_COMPANIES_FROM_DOCS(state, docs) {
@@ -27,12 +28,16 @@ export default new Vuex.Store({
           for (let i=0; i < company.products.length - 1; i++) {
             let product = Object.assign({}, company.products[i])
             product.companyId = company.id
-            product.companyLogoUrl = company.logo.image.url
+            if (company.logo && company.logo.image)
+              product.companyLogoUrl = company.logo.image.url
             product.companyName = Object.assign({}, company.name)
             state.products.push(product)
           }
         }
       }
+    },
+    SET_NOTICE(state, isNotice) {
+      state.isNotice = isNotice
     }
   },
   getters: {
@@ -52,6 +57,12 @@ export default new Vuex.Store({
       const shuffled = products.filter((p)=>p.images && p.images.length > 0).sort(() => 0.5 - Math.random())
       return shuffled.slice(0, num)
     },
+    getCompanyById: ({companies})=> (companyId)=> {
+      return companies.find((c)=> c.id === companyId)
+    },
+    getNotice({isNotice}) {
+      return isNotice
+    }
   },
   actions: {
   },

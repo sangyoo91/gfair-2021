@@ -9,10 +9,13 @@
 
   "covid_notice": "😷 Due to COVID-19, our Trade Meet will be held online.",
 
+  "cat_all": "All",
   "cat_beauty": "Beauty & Health",
   "cat_consumer": "Consumer Products",
   "cat_electronics": "Electronics & Electrical Products",
   "cat_industrial": "Industrial & Medical Products",
+
+  "products_see_all": "See All Products",
 
   "date_beauty": "11/16",
   "date_consumer": "11/17",

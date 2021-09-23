@@ -1,7 +1,8 @@
 <template>
   <button :class="{
     'button--sm': size === 'small',
-    'button--rounded': rounded
+    'button--rounded': rounded,
+    'button--primary': color === 'primary'
   }" v-on:click="$emit('click')">
     <slot/>
   </button>
@@ -17,6 +18,10 @@ export default {
     rounded: {
       default: false,
       type: Boolean
+    },
+    color: {
+      default: 'default',
+      type: String
     }
   }
 }
@@ -40,7 +45,7 @@ button
               border-color .15s ease-in-out,
               box-shadow .15s ease-in-out
   user-select: none
-
+  outline: 0
   &.button--sm
     font-size: 0.75rem
     padding: 0.5rem 1.0rem
@@ -48,8 +53,18 @@ button
   &.button--rounded
     border-radius: 1rem
 
+  &.button--primary
+    background-color: var(--color-primary)
+    color: white
+
+  &:focus
+    box-shadow: 0 0 0 4px rgba(#5e72e4, 0.25)
+
+
 button:hover
   transform: translate3d(0, -1px, 0)
   color: #212529
+  &.button--primary
+    color: white
 
 </style>
