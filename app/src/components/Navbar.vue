@@ -2,19 +2,19 @@
 <div class="navbar-outer">
   <div class="navbar">
     <Notice v-on:click="closeNotice" v-if="notice"/>
-    <div class="navbar-inner">
-      <div class="navbar-logo">
+    <div class="container">
+      <router-link class="navbar-logo" :to="{name: 'Home'}">
         <svgLogo class="svg"/>
         <div class="text">
           2021 GOOD MERCHANDISE
           <br> ONLINE TRADE ENQUIRY KOREA
         </div>
-      </div>
+      </router-link>
 
       <div class="menu">
-        <Button v-on:click="gotoCompanies">
+        <button v-on:click="gotoCompanies" class="menu-item">
           {{$t('companies')}}
-        </Button>
+        </button>
         <Button>
           {{$t('apply_now')}}
         </Button>
@@ -41,7 +41,8 @@ export default {
       this.notice = false
     },
     gotoCompanies() {
-      this.$router.push({name: 'Companies'})
+      if (this.$route.name !== "Companies")
+        this.$router.push({name: 'Companies'})
     }
   },
   components: {
@@ -67,20 +68,26 @@ export default {
 
 
 
-.navbar-inner
-  max-width: 1024px + 16px
-  margin: 0 auto
-  padding: 0 16px
+.container
+  // margin: 0 auto
+  // padding: 0 16px
   height: 100%
   display: flex
   align-items: center
   justify-content: space-between
 
-.navbar-logo
+a.navbar-logo
   height: 40px
   display: flex
   align-items: center
   user-select: none
+  color: white
+  text-decoration: none
+  outline: 0
+  border-radius: 4px
+
+  &:focus
+    box-shadow: 0 0 0 4px rgba(white, 0.25)
 
 .navbar-logo svg
   display: block
@@ -95,4 +102,18 @@ export default {
 
 .navbar .menu button
   margin-left: 8px
+
+button.menu-item
+  outline: 0
+  border: 0
+  padding: 6px 6px
+  border-radius: 4px
+  background-color: transparent
+  color: rgba(white, 1.0)
+  &:hover
+    background-color: rgba(white, 0.15)
+  &:focus
+    box-shadow: 0 0 0 4px rgba(white, 0.25)
+
+
 </style>

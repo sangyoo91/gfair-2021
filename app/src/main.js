@@ -6,6 +6,10 @@ import i18n from './i18n'
 
 Vue.config.productionTip = false
 
+Vue.prototype.$getFromLang = (data) => {
+  return data[i18n.locale] ? data[i18n.locale] : data.en
+}
+
 new Vue({
   router,
   store,

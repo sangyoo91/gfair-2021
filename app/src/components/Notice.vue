@@ -24,14 +24,12 @@ export default {
 
 <style lang="stylus" scoped>
 .notice
-
+  height: var(--navbar-height)
   width: 100%
   background-image: linear-gradient(135deg, #FF9500 0%, #f37227 100%)
 
 .notice .container
-  max-width: 1024px + 16px
-  margin: 0 auto
-  padding: 16px 16px
+  height: var(--navbar-height)
   color: white
   display: flex
   justify-content: space-between
