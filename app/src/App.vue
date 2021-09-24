@@ -54,11 +54,13 @@ body
   display: flex
   width: 100%
   min-height: 100%
+  overflow-x: hidden
 
 #app
   flex: 1
   display: flex
   flex-direction: column
+  overflow-x: hidden
 
 .app-content
   flex: 1

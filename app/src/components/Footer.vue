@@ -5,7 +5,7 @@
       <div class="footer-logo">
         <svgLogo class="svg"/>
         <div class="text">
-          GOOD MERCHANDISE ONLINE TRADE ENQUIRY KOREA
+          GOOD MERCHANDISE ONLINE TRADE MEET KOREA
           <div class="copyright">Copyright TRADE MEET KOREA. All rights reserved.</div>
         </div>
       </div>

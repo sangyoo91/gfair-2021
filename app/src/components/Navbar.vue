@@ -7,7 +7,7 @@
         <svgLogo class="svg"/>
         <div class="text">
           2021 GOOD MERCHANDISE
-          <br> ONLINE TRADE ENQUIRY KOREA
+          <br> ONLINE TRADE MEET KOREA
         </div>
       </router-link>
 

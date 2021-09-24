@@ -40,108 +40,39 @@
     </section>
 
     <section class="section section--network">
-      <div class="container align-right">
-        <div class="container">
-          <div class="row">
-            <div class="col-12 col-md-6">
-            </div>
-            <div class="col-12 col-md-6">
-              <div class="text text-right">
-                <h2>A wide selection of different companies and products</h2>
-                <p>
-                  We have a wide selection of companies and products that you can choose from across a variety of industries.
-                </p>
-              </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-6">
+          </div>
+          <div class="col-12 col-sm-12 col-md-6">
+            <div class="text text-right">
+              <h2>A wide selection of different companies and products</h2>
+              <p>
+                We have a wide selection of companies and products that you can choose from across a variety of industries.
+              </p>
             </div>
           </div>
         </div>
       </div>
     </section>
-
-    <section class="section section--categories">
-      <div class="container no-flex">
-        <div class="text text-center">
-          <h2>Korea Trade Meeting Products</h2>
-          <p>
-            These are the product categories that will be shown in Online.
-          </p>
-        </div>
-        <div class="categories-wrapper">
-          <div class="category-item" v-on:click="setRouteCategory('beauty-health')">
-            <div class="date">
-              {{$t('date_beauty')}}
-            </div>
-            <div class="title">
-              {{$t('cat_beauty')}}
-            </div>
-            <div class="company-count">
-              {{getCompanyCountByCategoryName('Beauty & Health')}} Companies
-            </div>
-          </div>
-          <div class="category-item" v-on:click="setRouteCategory('consumer-products')">
-            <div class="date">
-              {{$t('date_consumer')}}
-            </div>
-            <div class="title">
-              {{$t('cat_consumer')}}
-            </div>
-            <div class="company-count">
-              {{getCompanyCountByCategoryName('Consumer Products')}} Companies
-            </div>
-          </div>
-          <div class="category-item" v-on:click="setRouteCategory('electronics-electrical-products')">
-            <div class="date">
-              {{$t('date_electronics')}}
-            </div>
-            <div class="title">
-              {{$t('cat_electronics')}}
-            </div>
-            <div class="company-count">
-              {{getCompanyCountByCategoryName('Electronics & Electrical Products')}} Companies
-            </div>
-          </div>
-          <div class="category-item" v-on:click="setRouteCategory('industrial-medical-products')">
-            <div class="date">
-              {{$t('date_industrial')}}
-            </div>
-            <div class="title">
-              {{$t('cat_industrial')}}
-            </div>
-            <div class="company-count">
-              {{getCompanyCountByCategoryName('Industrial & Medical Products')}} Companies
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
+    <Categories/>
     <FeaturedProducts/>
   </div>
 </template>
 
 <script>
+import Categories from '@/views/home/Categories'
 import FeaturedProducts from '@/views/home/FeaturedProducts'
 export default {
   name: 'Home',
   components: {
-    FeaturedProducts
+    FeaturedProducts,
+    Categories
   },
   mounted () {
     window.scrollTo(0, 0)
   },
-  methods: {
-    getCompanyCountByCategoryName(cat) {
-      return this.companies.filter((c)=> c &&  c.category && c.category.nameEN === cat).length
-    },
-    setRouteCategory(categoryName) {
-      this.$router.push({
-        name: "Companies",
-        params: {
-          categoryName: categoryName
-        }
-      })
-    },
-  },
+
   computed: {
     companies() {
       return this.$store.getters.getCompanies
@@ -200,10 +131,6 @@ export default {
 section.section
   padding: 72px 0 128px
 
-section.section > .container
-  display: flex
-  &.no-flex
-    display: block
 
 // section.section > .container.align-right
 //   justify-content: flex-end
@@ -215,28 +142,6 @@ section.section .text
   &.text-center
     max-width: 100%
     text-align: center
-
-.categories-wrapper
-  display: flex
-  align-items: center
-  justify-content: center
-  margin-top: 40px
-
-.category-item
-  margin: 0 16px
-  width: 200px
-  height: 200px
-  display: flex
-  align-items: center
-  justify-content: center
-  flex-direction: column
-  text-align: center
-  background-color: #EFEFEF
-  border-radius: 16px
-  padding: 16px
-
-  .title
-    font-size: 1.15rem
 
 
 </style>

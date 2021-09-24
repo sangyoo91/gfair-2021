@@ -68,6 +68,12 @@ export default {
   grid-template-columns: 1fr 1fr 1fr
   grid-gap: 15px
 
+  @media screen and (max-width: 991px)
+    grid-template-columns: 1fr 1fr
+
+  @media screen and (max-width: 580px)
+    grid-template-columns: 1fr
+
 .product-item
   border: 1px solid #EFEFEF
 

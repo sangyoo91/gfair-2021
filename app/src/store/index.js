@@ -28,6 +28,7 @@ export default new Vuex.Store({
           for (let i=0; i < company.products.length - 1; i++) {
             let product = Object.assign({}, company.products[i])
             product.companyId = company.id
+            product.categoryId = company.category.id
             if (company.logo && company.logo.image)
               product.companyLogoUrl = company.logo.image.url
             product.companyName = Object.assign({}, company.name)
@@ -55,6 +56,10 @@ export default new Vuex.Store({
     },
     getRandomProducts: ({products})=>(num)=> {
       const shuffled = products.filter((p)=>p.images && p.images.length > 0).sort(() => 0.5 - Math.random())
+      return shuffled.slice(0, num)
+    },
+    getRandomProductsByCategoryId: ({products})=>({categoryId, num})=> {
+      const shuffled = products.filter((p)=>p.images && p.images.length > 0 && p.categoryId === categoryId).sort(() => 0.5 - Math.random())
       return shuffled.slice(0, num)
     },
     getCompanyById: ({companies})=> (companyId)=> {
