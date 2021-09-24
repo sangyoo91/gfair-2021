@@ -61,6 +61,10 @@
                 </div>
               </div>
             </div>
+            <div class="form-section">
+              <h4>Companies you wish to meet</h4>
+
+            </div>
             <Button type="submit" class="form-button" color="primary">
               {{$t('apply_now')}}!
             </Button>
