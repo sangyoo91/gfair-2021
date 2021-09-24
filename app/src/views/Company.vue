@@ -33,38 +33,8 @@
           </h1>
 
           <div class="products-list">
-
-            <div class="product-item" v-for="product, index in company.products" :key="index">
-              <h2 class="product-name">
-                {{index+1}}.{{$getFromLang(product.name)}}
-              </h2>
-              <div class="product-images">
-                <div class="product-image" v-for="image, index in product.images" :key="index">
-                  <img :src="image.image.url" alt="">
-                </div>
-              </div>
-              <div class="product-desc" v-if="$getFromLang(product.features)">
-                <h4 class="title">
-                  Product Features
-                </h4>
-                {{$getFromLang(product.features)}}
-              </div>
-              <div class="product-desc" v-if="$getFromLang(product.desc)">
-                <h4 class="title">
-                  Product Specifications
-                </h4>
-                {{$getFromLang(product.desc)}}
-              </div>
-              <div class="product-desc" v-if="$getFromLang(product.others)">
-                <h4 class="title">
-                  Others
-                </h4>
-                {{$getFromLang(product.others)}}
-              </div>
-            </div>
-
+            <ProductItem :product="product" :index="index" v-for="product, index in company.products" :key="index"/>>
           </div>
-
         </div>
 
       </div>
@@ -73,6 +43,7 @@
 </template>
 
 <script>
+import ProductItem from "@/views/company/ProductItem"
 export default {
   mounted () {
     window.scrollTo(0, 0)
@@ -84,7 +55,9 @@ export default {
     lang() {
       return this.$i18n.locale
     },
-
+  },
+  components: {
+    ProductItem
   }
 }
 </script>
@@ -138,16 +111,5 @@ export default {
   line-height: 1.4
   font-size: 1rem
   color: #333
-
-.product-desc
-  white-space: pre-line
-
-.product-desc h4.title
-  margin-top: 0
-
-.product-item
-  padding: 16px
-  border: 1px solid #EFEFEF
-  margin-bottom: 16px
 
 </style>

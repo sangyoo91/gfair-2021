@@ -4,11 +4,15 @@
   "apply_now": "Apply Now",
   "companies": "Korean Companies",
   "companies_mast_title": "Korean Companies List",
-  "companies_mast_desc": "Here you can find companies or products you might be interested in.",
+  "companies_mast_desc": "Here you can find companies you might be interested in.",
   "mast_text": "Korea Online Trade Meeting is one of the premier Trade Meet for small and medium-sized enterprises in Korea. Join us for our Online Trade Meeting and discover how dynamic Korean technologies and qualities can be!",
   "date_verbose": "November 16 ~ November 19",
 
   "covid_notice": "😷 Due to COVID-19, our Trade Meet will be held online.",
+
+  "products_mast_title": "Products List",
+  "products_mast_desc": "Here you can find products you might be interested in.",
+
 
   "cat_all": "All",
   "cat_beauty": "Beauty & Health",

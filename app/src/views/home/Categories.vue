@@ -9,7 +9,8 @@
         </p>
       </div>
       <div class="categories-wrapper">
-        <div class="category-item" v-on:click="setRouteCategory(category.id)" v-for="category in categories" :key="category.id">
+        <!-- v-on:click="setRouteCategory(category.id)" -->
+        <div class="category-item"  v-for="category in categories" :key="category.id">
           <div class="category-product-images">
             <div v-for="product in getRandomProductsByCategoryId({
               categoryId: category.id, num: 1
@@ -24,7 +25,14 @@
           <div class="title">
             {{$t(category.i18n.cat)}}
           </div>
-
+          <router-link :to="{
+            name: 'Companies',
+            params: {
+              categoryId: categoryId
+            }
+          }">
+            View Companies
+          </router-link>
           <!-- <div class="company-count">
             {{getCompanyCountByCategoryName('Beauty & Health')}} Companies
           </div> -->
@@ -143,7 +151,7 @@ export default {
   object-position: center
 
 .category-item
-  cursor: pointer
+  // cursor: pointer
   display: flex
   height: 100%
   align-items: center
@@ -163,8 +171,14 @@ export default {
     height: 48px
     display: flex
     align-items: center
-  &:hover
-    transform: scale(1.025)
+  // &:hover
+  //   transform: scale(1.025)
+  a
+    color: var(--color-primary)
+    font-size: 13px
+    text-decoration: none
+  a:hover
+    text-decoration: underline
 
 
 </style>

@@ -32,15 +32,16 @@
             </router-link>
             <div class="product-desc">
               <div class="line-clamp">
-                {{$getFromLang(product.desc)}}
+                {{$getFromLang(product.features)}}
               </div>
             </div>
+
           </div>
         </div>
       </div>
     </div>
     <div class="container">
-      <Button class="btn-see-all" :color="'primary'">
+      <Button class="btn-see-all" :color="'primary'" v-on:click="gotoProducts">
         {{$t('products_see_all')}}
       </Button>
     </div>
@@ -54,6 +55,13 @@ export default {
     products() {
       return this.$store.getters['getRandomProducts'](6)
     },
+  },
+  methods: {
+    gotoProducts() {
+      this.$router.push({
+        name: "Products"
+      })
+    }
   },
   components: {
     Button
@@ -75,7 +83,7 @@ export default {
     grid-template-columns: 1fr
 
 .product-item
-  border: 1px solid #EFEFEF
+  border: 1px solid #DEDEDE
 
 .product-thumb
   position: relative
@@ -103,8 +111,6 @@ export default {
 
 .product-meta-head
   display: block
-  padding: 8px 16px
-  border-bottom: 1px solid #EFEFEF
   text-decoration: none
   &:hover
     text-decoration: underline
@@ -117,26 +123,34 @@ export default {
   color: var(--color-primary)
   font-size: 14px
   margin-bottom: 4px
+  border-bottom: 1px solid #EFEFEF
+  // background-color: rgba(black, 0.025)
   .logo
     width: 32px
     height: 32px
     margin-right: 4px
-    border: 1px solid #DDD
+    border-right: 1px solid #EFEFEF
+    background-color: white
+    padding: 2px
   .logo img
     width: 100%
     height: 100%
     object-fit: contain
 
 .product-name
-  font-size: 18px
+  font-size: 16px
   // margin-bottom: 8px
   font-weight: bold
+  padding: 0 8px
+  height: 52px
+  display: flex
+  align-items: center
   color: #333
 
 .product-desc
   font-size: 14px
   color: #666
-  padding: 16px
+  padding: 0 8px 8px
 
 .btn-see-all
   width: 100%

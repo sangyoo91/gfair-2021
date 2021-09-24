@@ -64,7 +64,6 @@ body
 
 .app-content
   flex: 1
-  padding-bottom: 2rem
   &.has-notice
     padding-top: var(--navbar-height)
 

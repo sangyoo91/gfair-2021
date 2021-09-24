@@ -3,7 +3,14 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import i18n from './i18n'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
 
+// import style (>= Swiper 6.x)
+import 'swiper/css/swiper.css'
+
+
+
+Vue.use(VueAwesomeSwiper, /* { default options with global component } */)
 Vue.config.productionTip = false
 
 Vue.prototype.$getFromLang = (data) => {
