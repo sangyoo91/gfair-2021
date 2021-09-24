@@ -5,7 +5,7 @@
         {{$t('covid_notice')}}
       </div>
       <Button :size="'small'" :rounded="true" v-on:click="$emit('click')">
-        I Understand
+        Close
       </Button>
     </div>
 

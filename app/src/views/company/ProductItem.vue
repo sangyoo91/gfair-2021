@@ -22,25 +22,26 @@
     </div>
     <div class="product-meta">
       <h2 class="product-name">
-        {{index+1}}.{{$getFromLang(product.name)}}
+        <!-- {{index+1}}.  -->
+        {{$getFromLang(product.name)}}
       </h2>
       <div class="product-desc" v-if="$getFromLang(product.features)">
         <h4 class="title">
           Product Features
         </h4>
-        {{$getFromLang(product.features)}}
+        <p>{{$getFromLang(product.features)}}</p>
       </div>
       <div class="product-desc" v-if="$getFromLang(product.desc)">
         <h4 class="title">
           Product Specifications
         </h4>
-        {{$getFromLang(product.desc)}}
+        <p>{{$getFromLang(product.desc)}}</p>
       </div>
       <div class="product-desc" v-if="$getFromLang(product.others)">
         <h4 class="title">
           Others
         </h4>
-        {{$getFromLang(product.others)}}
+        <p>{{$getFromLang(product.others)}}</p>
       </div>
     </div>
   </div>
@@ -79,19 +80,35 @@ export default {
 
 .product-item
   padding: 0
-  border: 1px solid #EFEFEF
+  border: 1px solid #EAEAEA
   margin-bottom: 16px
   display: flex
+  @media screen and (max-width: 640px)
+    display: block
 
 .product-images
   width: 300px + 32px
-  margin-right: 16px
+  height: 100%
+  // margin-right: 16px
   padding: 16px
-  border-right: 1px solid #EFEFEF
+  @media screen and (max-width: 991px)
+    width: 240px + 32px
+  @media screen and (max-width: 768px)
+    width: 188px + 32px
+  @media screen and (max-width: 640px)
+    width: 100%
 
 .swiper-image
   width: 300px
   height: 300px
+  @media screen and (max-width: 991px)
+    width: 240px
+    height: 240px
+  @media screen and (max-width: 768px)
+    width: 188px
+    height: 188px
+  @media screen and (max-width: 640px)
+    width: 100%
 
   img
     display: block
@@ -103,5 +120,31 @@ export default {
 .product-meta
   flex: 1
   padding: 16px
+  border-left: 1px solid #EFEFEF
+  @media screen and (max-width: 640px)
+    border: 0
+    border-top: 1px solid #EFEFEF
+
+.swiper-pagination-bullet-active
+  background-color: var(--color-primary)
+
+h2.product-name
+  margin: 0 0 2rem
+  font-size: 21px
+  font-weight: bold
+  color: #333
+
+.product-desc
+  margin: 0 0 1rem
+
+  .title
+    margin: 0 0 0.875rem
+    font-size: 0.95rem
+    color: #333
+
+  p
+    margin: 0
+    font-size: 0.95rem
+    color: #303030
 
 </style>

@@ -28,6 +28,23 @@
   "date_industrial": "11/19",
 
 
-  "lang": "Language"
+  "lang": "Language",
+
+
+  "apply_form_mast_title": "Apply for Online Trade Meeting",
+  "apply_form_mast_desc": "After we receive your application, our staff will do their best to contact you via e-mail and, or mobile.",
+
+  "form_your_company": "Company",
+  "form_your_name": "Name",
+  "form_your_job_position": "Job Position",
+  "form_your_email": "E-Mail",
+  "form_your_mobile": "Mobile",
+
+  "placeholder_your_company": "Apple Inc.,",
+  "placeholder_your_name": "John Doe",
+  "placeholder_your_job_position": "Sales Manager",
+  "placeholder_your_email": "johndoe@email.com",
+  "placeholder_your_mobile": "000-000-0000"
+
 
 }

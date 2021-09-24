@@ -1,12 +1,21 @@
 <template>
   <div class="page" v-if="company">
-    <section class="section--company-mast">
+    <section class="mast">
       <div class="container">
+
+      </div>
+    </section>
+    <div class="container">
+      <section class="section--page">
         <div class="strip">
-          <div class="strip-title">
+          <router-link class="strip-title" :to="{
+            name: 'Companies', params: {
+              categoryId: company.category.id
+            }
+          }">
             {{company.boothNumber}} |
             {{lang && lang === 'en' ? company.category.nameEN : (company.category.nameVN ? company.category.nameVN : company.category.nameEN)}}
-          </div>
+          </router-link>
         </div>
 
         <div class="company-head">
@@ -22,7 +31,9 @@
 
         <div class="company-body">
           <div class="company-desc">
-            {{$getFromLang(company.desc)}}
+            <p>
+              {{$getFromLang(company.desc)}}
+            </p>
           </div>
         </div>
 
@@ -33,12 +44,12 @@
           </h1>
 
           <div class="products-list">
-            <ProductItem :product="product" :index="index" v-for="product, index in company.products" :key="index"/>>
+            <ProductItem :product="product" :index="index" v-for="product, index in company.products" :key="index"/>
           </div>
         </div>
 
-      </div>
-    </section>
+      </section>
+    </div>
   </div>
 </template>
 
@@ -64,11 +75,39 @@ export default {
 
 
 <style lang="stylus" scoped>
-.section--company-mast
-  padding-top: calc(var(--navbar-height) + 30px)
+.page
+  background-color: #EFEFEF
+.mast
+  min-height: 33vh
+  background: linear-gradient(150deg,#281483 15%,#8f6ed5 70%,#d782d9 94%)
+  padding-top: var(--navbar-height)
+  display: flex
+  align-items: center
+  color: white
+
+.section--page
+  position: relative
+  // padding-top: calc(var(--navbar-height) + 30px)
   color: #333
+  background-color: white
+  margin-top: -10vh
+  padding: 32px
+  border-radius: 4px
+  border: 1px solid #DEDEDE
+  box-shadow: 0 4px 8px rgba(black, 0.1)
+  @media screen and (max-width: 991px)
+    padding: 16px
+  @media screen and (max-width: 480px)
+    margin-left: -15px
+    margin-right: -15px
+    border-radius: 0
+    box-shadow: 0
 
 .strip
+  position: absolute
+  top: -16px
+  left: 0
+  transform: translate3d(0, -100%, 0)
   width: 100%
   padding: 8px
   display: flex
@@ -78,10 +117,29 @@ export default {
   background-color: #EFEFEF
   color: #5a5a5a
   margin-bottom: 2rem
+  box-shadow: 0 4px 8px rgba(black, 0.1)
+  @media screen and (max-width: 480px)
+    box-shadow: 0
+    top: 0
+    border-radius: 0
+    margin: 0
+    border-top: 1px solid #D0D0D0
+    border-bottom: 1px solid #D0D0D0
+    font-size: 14px
+
+
+
+.strip-title
+  color: #5a5a5a
+  text-decoration: none
+  &:hover
+    text-decoration: underline
 
 .company-head
   display: flex
   align-items: center
+  @media screen and (max-width: 640px)
+    display: block
   .company-logo
     width: 80px
     height: 80px
@@ -89,6 +147,8 @@ export default {
     border: 1px solid #EFEFEF
     box-shadow: 0 8px 16px rgba(black, 0.1)
     margin-right: 15px
+    @media screen and (max-width: 640px)
+      margin: 0 auto 1rem
   .company-logo img
     display: block
     width: 100%
@@ -97,11 +157,20 @@ export default {
     padding: 8px
   .text
     flex: 1
+    @media screen and (max-width: 640px)
+      flex: 0
+      text-align: center
+      font-size: 18px
+
 
 .company-name
   font-size: 40px
   font-weight: 600
   color: #5a5a5a
+  @media screen and (max-width: 640px)
+    font-size: 24px
+  @media screen and (max-width: 540px)
+    font-size: 21px
 
 .company-body
   margin-top: 2rem
@@ -110,6 +179,17 @@ export default {
   font-weight: 300
   line-height: 1.4
   font-size: 1rem
+  padding: 0 0 1.5rem
+  margin: 0 0 2rem
   color: #333
+  border-bottom: 1px solid #EFEFEF
+
+h1.company-products-title
+  margin: 0 0 1rem
+  font-size: 1.875rem
+  @media screen and (max-width: 640px)
+    font-size: 1.5rem
+  @media screen and (max-width: 540px)
+    font-size: 1.25rem
 
 </style>
