@@ -25,46 +25,46 @@
             <div class="form-group">
               <div class="input-wrapper">
                 <label>{{$t('form_your_company')}}</label>
-                <input type="text" :placeholder="$t('placeholder_your_company')">
+                <input type="text" v-model.trim="user_company" :placeholder="$t('placeholder_your_company')">
                 <div class="input-error"></div>
               </div>
             </div>
             <div class="form-group">
               <div class="input-wrapper">
                 <label>{{$t('form_your_name')}}</label>
-                <input type="text" :placeholder="$t('placeholder_your_name')">
+                <input type="text" v-model.trim="user_name" :placeholder="$t('placeholder_your_name')">
                 <div class="input-error"></div>
               </div>
             </div>
             <div class="form-group">
               <div class="input-wrapper">
                 <label>{{$t('form_your_job_position')}}</label>
-                <input type="text" :placeholder="$t('placeholder_your_job_position')">
+                <input type="text" v-model.trim="user_job_position" :placeholder="$t('placeholder_your_job_position')">
                 <div class="input-error"></div>
               </div>
             </div>
             <div class="form-group">
               <div class="row">
-                <div class="col">
+                <div class="col-sm-12 col-md-6">
                   <div class="input-wrapper">
                     <label>{{$t('form_your_email')}}</label>
-                    <input type="text" :placeholder="$t('placeholder_your_email')">
+                    <input type="text" v-model.trim="user_email" :placeholder="$t('placeholder_your_email')">
                     <div class="input-error"></div>
                   </div>
                 </div>
-                <div class="col">
+                <div class="col-sm-12 col-md-6">
                   <div class="input-wrapper">
                     <label>{{$t('form_your_mobile')}}</label>
-                    <input type="text" :placeholder="$t('placeholder_your_mobile')">
+                    <input type="text" v-model.trim="user_mobile" :placeholder="$t('placeholder_your_mobile')">
                     <div class="input-error"></div>
                   </div>
                 </div>
               </div>
             </div>
             <div class="form-section">
-              <h4>Companies you wish to meet</h4>
+              <h4>{{$t('form_companies_wish')}}</h4>
               <div class="row">
-                <div class="col">
+                <div class="col-sm-12 col-md-6">
                   <div class="input-wrapper">
                     <select v-model="categoryId" placeholder="Choose a date">
                       <option :value="category.id" v-for="category in categories" :key="category.id">
@@ -73,38 +73,29 @@
                     </select>
                   </div>
                 </div>
-                <div class="col">
+                <div class="col-sm-12 col-md-6">
                   <div class="input-wrapper">
                     <select v-model="companyId" placeholder="Select a company">
                       <option :value="company.id" v-for="company in companiesInSelectedDate" :key="company.id">
-                        {{$getFromLang(company.name)}}
+                        [{{company.boothNumber}}] {{$getFromLang(company.name)}}
                       </option>
                     </select>
                   </div>
                 </div>
               </div>
               <h4>Selected Companies</h4>
-              <div v-for="category in selectedDates" :key="category.id">
-                [{{$t(category.i18n.date)}}]
-                {{$t(category.i18n.cat)}}
+              <div v-for="category in selectedDates" :key="category.id" class="date-group">
+                <div class="date-group-title">
+                  [{{$t(category.i18n.date)}}] {{$t(category.i18n.cat)}}
+                </div>
 
                 <div class="selected-companies">
-                  <div class="company" v-for="company in selectedCompaniesInCategory(category.id)" :key="company.id">
-                    <div class="company-logo">
-                      <img :src="company.logo.thumb.url" v-if="company.logo && company.logo.thumb"/>
-                    </div>
-                    {{$getFromLang(company.name)}}
-                    <select>
-                      <option v-for="time in getTimes()" :key="time">
-                        {{time}}
-                      </option>
-                    </select>
-                  </div>
+                  <SelectedCompany v-for="company in selectedCompaniesInCategory(category.id)" :key="company.id" :company="company"/>
                 </div>
               </div>
             </div>
 
-            <Button type="submit" class="form-button" color="primary" v-on:click="getTimes">
+            <Button type="submit" class="form-button" color="primary" v-on:click="checkCompany">
               {{$t('apply_now')}}!
             </Button>
           </form>
@@ -120,17 +111,23 @@
 
 <script>
 import Button from '@/components/el/button'
+import SelectedCompany from '@/views/applyNow/SelectedCompany'
 
 export default {
   data() {
     return {
+      user_company: "",
+      user_name: "",
+      user_job_position: "",
+      user_email: "",
+      user_mobile: "",
       categoryId: false,
       companyId: false,
       selectedCompanies: []
     }
   },
   components: {
-    Button
+    Button, SelectedCompany
   },
   watch: {
     companyId(to) {
@@ -139,6 +136,8 @@ export default {
         let company = this.companiesInSelectedDate.find((c)=> c.id === to)
         if (company)
           if (!this.selectedCompanies.find((c)=> c.id === to))
+            company = Object.assign({}, company)
+            company.time = '8:45AM'
             this.selectedCompanies.push(company)
           // this.selectedCompanies.push(Object.assign({}, company))
       }
@@ -154,22 +153,12 @@ export default {
         if (!this.selectedCompanies.find((c)=> c.id === this.companyId))
           this.selectedCompanies.push(company)
     },
-    getTimes() {
-      let minPerInterval = 15
-      let times = []
-      let startTime = 525 // Start Time in Minutes. 0 == 12AM
-      let ampm = ['AM', 'PM']
-      let i = 0
-      // End Time + 1
-      while (startTime < 16 * 60 + 46 ) {
-        let hh = Math.floor(startTime / 60)
-        let mm = startTime % 60
-        times[i] = ('' + (hh == 12 ? 12 : hh % 12)).slice(-2) + ':' + ('0' + mm).slice(-2) + ampm[Math.floor(hh/12)]
-        startTime = startTime + minPerInterval
-        i++
-      }
-      console.log(times, this.categoryId, this.companyId, this.selectedCompanies)
-      return times
+    checkCompany() {
+      console.log(
+
+        Object.assign({}, this.selectedCompanies)
+
+      )
     }
   },
   computed: {
@@ -199,6 +188,16 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+
+.date-group
+  padding: 16px
+  margin: 0 -16px 8px -16px
+  border: 1px solid #DEDEDE
+.date-group-title
+  font-size: 16px
+  margin-bottom: 8px
+  color: #666
+
 .page
   margin-top: var(--navbar-height)
 

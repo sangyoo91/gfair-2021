@@ -28,7 +28,7 @@
           <router-link :to="{
             name: 'Companies',
             params: {
-              categoryId: categoryId
+              categoryId: category.id
             }
           }">
             View Companies
