@@ -1,5 +1,5 @@
 <template>
-  
+
   <section class="section section--categories">
     <div class="container">
       <div class="text text-center">

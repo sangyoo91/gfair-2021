@@ -63,9 +63,48 @@
             </div>
             <div class="form-section">
               <h4>Companies you wish to meet</h4>
+              <div class="row">
+                <div class="col">
+                  <div class="input-wrapper">
+                    <select v-model="categoryId" placeholder="Choose a date">
+                      <option :value="category.id" v-for="category in categories" :key="category.id">
+                        [{{$t(category.i18n.date)}}] {{$t(category.i18n.cat)}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="input-wrapper">
+                    <select v-model="companyId" placeholder="Select a company">
+                      <option :value="company.id" v-for="company in companiesInSelectedDate" :key="company.id">
+                        {{$getFromLang(company.name)}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <h4>Selected Companies</h4>
+              <div v-for="category in selectedDates" :key="category.id">
+                [{{$t(category.i18n.date)}}]
+                {{$t(category.i18n.cat)}}
 
+                <div class="selected-companies">
+                  <div class="company" v-for="company in selectedCompaniesInCategory(category.id)" :key="company.id">
+                    <div class="company-logo">
+                      <img :src="company.logo.thumb.url" v-if="company.logo && company.logo.thumb"/>
+                    </div>
+                    {{$getFromLang(company.name)}}
+                    <select>
+                      <option v-for="time in getTimes()" :key="time">
+                        {{time}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
             </div>
-            <Button type="submit" class="form-button" color="primary">
+
+            <Button type="submit" class="form-button" color="primary" v-on:click="getTimes">
               {{$t('apply_now')}}!
             </Button>
           </form>
@@ -83,8 +122,78 @@
 import Button from '@/components/el/button'
 
 export default {
+  data() {
+    return {
+      categoryId: false,
+      companyId: false,
+      selectedCompanies: []
+    }
+  },
   components: {
     Button
+  },
+  watch: {
+    companyId(to) {
+      console.log('to', to)
+      if (to) {
+        let company = this.companiesInSelectedDate.find((c)=> c.id === to)
+        if (company)
+          if (!this.selectedCompanies.find((c)=> c.id === to))
+            this.selectedCompanies.push(company)
+          // this.selectedCompanies.push(Object.assign({}, company))
+      }
+    }
+  },
+  methods: {
+    selectedCompaniesInCategory(categoryId) {
+      return this.selectedCompanies.filter((c)=> c.category.id === categoryId)
+    },
+    addCompany() {
+      let company = this.companiesInSelectedDate.find((c)=> c.id === this.companyId)
+      if (company)
+        if (!this.selectedCompanies.find((c)=> c.id === this.companyId))
+          this.selectedCompanies.push(company)
+    },
+    getTimes() {
+      let minPerInterval = 15
+      let times = []
+      let startTime = 525 // Start Time in Minutes. 0 == 12AM
+      let ampm = ['AM', 'PM']
+      let i = 0
+      // End Time + 1
+      while (startTime < 16 * 60 + 46 ) {
+        let hh = Math.floor(startTime / 60)
+        let mm = startTime % 60
+        times[i] = ('' + (hh == 12 ? 12 : hh % 12)).slice(-2) + ':' + ('0' + mm).slice(-2) + ampm[Math.floor(hh/12)]
+        startTime = startTime + minPerInterval
+        i++
+      }
+      console.log(times, this.categoryId, this.companyId, this.selectedCompanies)
+      return times
+    }
+  },
+  computed: {
+    categories() {
+      return this.$store.getters.getCategories
+    },
+    companiesInSelectedDate() {
+      if (this.categoryId)
+        return this.$store.getters.getCompaniesByCategoryId(this.categoryId)
+      return []
+    },
+    selectedDates() {
+      let categoryIds = []
+      console.log("Run selectedDates computed", this.selectedCompanies)
+      for (let i=0; i <= this.selectedCompanies.length - 1; i++) {
+
+        console.log(this.selectedCompanies[i].name.en)
+        let categoryId = this.selectedCompanies[i].category.id
+        if (! categoryIds.find((cId)=> cId === categoryId)) {
+          categoryIds.push(categoryId)
+        }
+      }
+      return this.categories.filter((c)=> categoryIds.includes(c.id) )
+    }
   }
 }
 </script>
@@ -137,6 +246,7 @@ p.form-desc
   color: #7b7879
 
 .input-wrapper input
+.input-wrapper select
   height: 42px
   width: 100%
   background-color: #F6FAFD

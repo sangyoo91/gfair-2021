@@ -7,6 +7,44 @@ export default new Vuex.Store({
   state: {
     companies: [],
     products: [],
+    categories: [
+      {
+        id: 'beauty-health',
+        imgNum: 1,
+        i18n: {
+          date: 'date_beauty',
+          cat: 'cat_beauty'
+        },
+        dateStr: '11/16'
+      },
+      {
+        id: 'consumer-products',
+        imgNum: 1,
+        i18n: {
+          date: 'date_consumer',
+          cat: 'cat_consumer'
+        },
+        dateStr: '11/17'
+      },
+      {
+        id: 'electronics-electrical-products',
+        imgNum: 1,
+        i18n: {
+          date: 'date_electronics',
+          cat: 'cat_electronics'
+        },
+        dateStr: '11/18'
+      },
+      {
+        id: 'industrial-medical-products',
+        imgNum: 1,
+        i18n: {
+          date: 'date_industrial',
+          cat: 'cat_industrial'
+        },
+        dateStr: '11/19'
+      },
+    ],
     isNotice: true,
   },
   mutations: {
@@ -51,6 +89,15 @@ export default new Vuex.Store({
         }
       })
     },
+    getCompaniesByCategoryId: ({companies})=> (categoryId)=> {
+      return companies.filter((c)=> c && c.name && c.category && c.category.id === categoryId).sort((a, b)=> {
+        if (a.boothNumber > b.boothNumber) {
+          return 1
+        } else {
+          return -1
+        }
+      })
+    },
     getProducts({products}) {
       return products
     },
@@ -67,6 +114,9 @@ export default new Vuex.Store({
     },
     getNotice({isNotice}) {
       return isNotice
+    },
+    getCategories({categories}) {
+      return categories
     }
   },
   actions: {
