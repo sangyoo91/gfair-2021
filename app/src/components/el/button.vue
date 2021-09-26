@@ -2,8 +2,9 @@
   <button :class="{
     'button--sm': size === 'small',
     'button--rounded': rounded,
-    'button--primary': color === 'primary'
-  }" v-on:click="$emit('click')">
+    'button--primary': color === 'primary',
+    'loading': loading
+  }" v-on:click="click">
     <slot/>
   </button>
 </template>
@@ -22,6 +23,22 @@ export default {
     color: {
       default: 'default',
       type: String
+    },
+    loading: {
+      type: Boolean,
+      default: false
+    },
+    goto: {
+      type: null,
+      default: null
+    },
+  },
+  methods: {
+    click() {
+      if (this.goto != null) {
+        return this.$router.push(this.goto)
+      }
+      this.$emit('click')
     }
   }
 }
@@ -56,10 +73,34 @@ button
   &.button--primary
     background-color: var(--color-primary)
     color: white
+    &:after
+      border-color: white
 
   &:focus
     box-shadow: 0 0 0 4px rgba(#5e72e4, 0.25)
 
+  &:after
+    position: absolute
+    top: 50%
+    left: 50%
+    height: 1.25em
+    width: 1.25em
+    transform: translate3d(-50%, -50%, 0)
+    border: 2px solid var(--color-primary)
+    border-top-color: transparent
+    border-radius: 50%
+    content: ""
+    opacity: 0
+    transition: opacity 200ms
+
+  &.loading
+    color: transparent
+
+  &.loading:after
+    opacity: 1
+    animation-name: spin
+    animation-duration: 1s
+    animation-iteration-count: infinite
 
 button:hover
   transform: translate3d(0, -1px, 0)

@@ -6,6 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     companies: [],
+    codes: [],
     products: [],
     categories: [
       {
@@ -48,6 +49,16 @@ export default new Vuex.Store({
     isNotice: true,
   },
   mutations: {
+    SET_CODES_FROM_DOCS(state, docs) {
+      state.codes = []
+
+      for (let i=0; i <= docs.length - 1; i ++) {
+        let code = docs[i].data()
+        // code.code = docs[i].code
+        code.id = docs[i].id
+        state.codes.push(code)
+      }
+    },
     SET_COMPANIES_FROM_DOCS(state, docs) {
       state.companies = []
       // docs.forEach((d)=> {
@@ -55,15 +66,15 @@ export default new Vuex.Store({
       //   company.id = d.id
       //   state.companies.push(company)
       // })
-      for (let i=0; i < docs.length - 1; i++) {
+      for (let i=0; i <= docs.length - 1; i++) {
         let company = docs[i].data()
         company.id = docs[i].id
         state.companies.push(company)
       }
-      for (let ci=0; ci <state.companies.length - 1; ci++) {
+      for (let ci=0; ci <= state.companies.length - 1; ci++) {
         let company = state.companies[ci]
         if (company.products) {
-          for (let i=0; i < company.products.length - 1; i++) {
+          for (let i=0; i <= company.products.length - 1; i++) {
             let product = Object.assign({}, company.products[i])
             product.companyId = company.id
             product.categoryId = company.category.id
@@ -80,6 +91,15 @@ export default new Vuex.Store({
     }
   },
   getters: {
+    getCodes({codes}) {
+      return codes.filter((a, b)=> {
+        if (a.code > b.code) {
+          return 1
+        } else {
+          return -1
+        }
+      })
+    },
     getCompanies({companies}) {
       return companies.filter((c)=> c && c.name).sort((a, b)=> {
         if (a.boothNumber > b.boothNumber) {

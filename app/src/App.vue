@@ -22,8 +22,15 @@ export default {
   },
   created() {
     this.loadCompanies()
+    this.loadCodes()
   },
   methods: {
+    async loadCodes() {
+      console.log("request Load Codes")
+      const data = await db.collection('codes').get()
+      this.$store.commit("SET_CODES_FROM_DOCS", data.docs)
+      console.log("loadCodes", data)
+    },
     async loadCompanies() {
       console.log("request Load Companies")
       const data = await db.collection('companies').get()

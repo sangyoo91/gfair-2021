@@ -24,6 +24,17 @@
 
             <div class="form-group">
               <div class="input-wrapper">
+                <label>{{$t('form_invite_code')}}</label>
+                <select v-model="user_code">
+                  <option :value="code" v-for="code in codes" :key="code.id">
+                    {{code.code}}
+                  </option>
+                </select>
+                <div class="input-error"></div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-wrapper">
                 <label>{{$t('form_your_company')}}</label>
                 <input type="text" v-model.trim="user_company" :placeholder="$t('placeholder_your_company')">
                 <div class="input-error"></div>
@@ -55,7 +66,10 @@
                 <div class="col-sm-12 col-md-6">
                   <div class="input-wrapper">
                     <label>{{$t('form_your_mobile')}}</label>
-                    <input type="text" v-model.trim="user_mobile" :placeholder="$t('placeholder_your_mobile')">
+                    <!-- <input type="text" v-model.trim="user_mobile" :placeholder="$t('placeholder_your_mobile')"> -->
+                    <imask-input type="text" v-model.trim="user_mobile"
+                                :placeholder="$t('placeholder_your_mobile')"
+                                :mask="mobileMask"/>
                     <div class="input-error"></div>
                   </div>
                 </div>
@@ -84,18 +98,23 @@
                 </div>
               </div>
               <h4>Selected Companies</h4>
-              <div v-for="category in selectedDates" :key="category.id" class="date-group">
-                <div class="date-group-title">
-                  [{{$t(category.i18n.date)}}] {{$t(category.i18n.cat)}}
-                </div>
+              <div v-if="selectedCompanies.length > 0">
+                <div v-for="category in selectedDates" :key="category.id" class="date-group">
+                  <div class="date-group-title">
+                    [{{$t(category.i18n.date)}}] {{$t(category.i18n.cat)}}
+                  </div>
 
-                <div class="selected-companies">
-                  <SelectedCompany v-for="company in selectedCompaniesInCategory(category.id)" :key="company.id" :company="company"/>
+                  <div class="selected-companies">
+                    <SelectedCompany v-for="company in selectedCompaniesInCategory(category.id)" :key="company.id" :company="company"/>
+                  </div>
                 </div>
+              </div>
+              <div class="selected-companies-message" v-else>
+                No Companies Selected
               </div>
             </div>
 
-            <Button type="submit" class="form-button" color="primary" v-on:click="checkCompany">
+            <Button type="submit" class="form-button" color="primary" v-on:click="submitApplication" :loading="isLoading">
               {{$t('apply_now')}}!
             </Button>
           </form>
@@ -110,12 +129,16 @@
 </template>
 
 <script>
+import axios from 'axios'
 import Button from '@/components/el/button'
 import SelectedCompany from '@/views/applyNow/SelectedCompany'
+import {IMaskComponent} from 'vue-imask'
 
 export default {
   data() {
     return {
+      isLoading: false,
+      user_code: false,
       user_company: "",
       user_name: "",
       user_job_position: "",
@@ -123,11 +146,17 @@ export default {
       user_mobile: "",
       categoryId: false,
       companyId: false,
-      selectedCompanies: []
+      selectedCompanies: [],
+      mobileMask: [
+        {mask: '000-000-0000'},
+        {mask: '000-0000-0000'}
+      ]
     }
   },
   components: {
-    Button, SelectedCompany
+    Button,
+    SelectedCompany,
+    'imask-input': IMaskComponent
   },
   watch: {
     companyId(to) {
@@ -153,15 +182,90 @@ export default {
         if (!this.selectedCompanies.find((c)=> c.id === this.companyId))
           this.selectedCompanies.push(company)
     },
-    checkCompany() {
+    testForm() {
       console.log(
-
+        this.user_code,
+        this.user_company,
+        this.user_name,
+        this.user_job_position,
+        this.user_email,
+        this.user_mobile,
         Object.assign({}, this.selectedCompanies)
-
       )
+    },
+    validateEmail(email) {
+      const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      return re.test(String(email).toLowerCase())
+    },
+    submitApplication() {
+      this.testForm()
+
+      let mobile = this.user_mobile.replace(/-/gi, '')
+
+      if (!this.user_code) {
+        return this.$toast.error("You must select a invite code.")
+      }
+
+      if (this.user_company.trim().length < 1) {
+        return this.$toast.error("Please input your company name.")
+      }
+
+      if (this.user_name.trim().length < 3) {
+        return this.$toast.error("Please input your name.")
+      }
+
+      if (this.user_job_position.trim().length < 3) {
+        return this.$toast.error("Please input your job position.")
+      }
+
+      if (!this.validateEmail(this.user_email)) {
+        return this.$toast.error("Please input a proper email.")
+      }
+
+      if (mobile.trim().length !== 10 && mobile.trim().length !== 11) {
+        return this.$toast.error("Please input a proper mobile number.")
+      }
+
+      let formData = {
+        codeId: this.user_code.id,
+        code: this.user_code.code,
+        user_company: this.user_company.trim(),
+        user_name: this.user_name.trim(),
+        user_job_position: this.user_job_position.trim(),
+        user_email: this.user_email.trim(),
+        user_mobile: mobile,
+        selectedCompanies: [],
+      }
+
+      console.log(formData, this.selectedCompanies)
+
+      for (let i=0; i <= this.selectedCompanies.length - 1; i++) {
+        let company = this.selectedCompanies[i]
+        if (!company.time) {
+          return this.$toast.error(`Please select a time for ${this.$getFromLang(company.name)}.`)
+        }
+        formData.selectedCompanies.push(company)
+      }
+
+      if (formData.selectedCompanies.length < 1) {
+        return this.$toast.error("Please select the companies you wish to meet.")
+      }
+      this.isLoading = true
+
+      axios.post(`${this.$functionsUrl}/applications/apply`, formData)
+      .then(()=> {
+        return this.$toast.success("Application complete")
+      }).catch(()=> {
+        return this.$toast.error("Something went wrong")
+      }).finally(()=> {
+        this.isLoading = false
+      })
     }
   },
   computed: {
+    codes() {
+      return this.$store.getters.getCodes
+    },
     categories() {
       return this.$store.getters.getCategories
     },

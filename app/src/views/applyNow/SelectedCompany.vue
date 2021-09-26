@@ -33,13 +33,21 @@ export default {
   ],
   methods: {
     getTimes() {
-      let minPerInterval = 15
+      let minPerInterval = 50
       let times = []
-      let startTime = 525 // Start Time in Minutes. 0 == 12AM
+      let startTime = 540 // Start Time in Minutes. 0 == 12AM
       let ampm = ['AM', 'PM']
       let i = 0
       // End Time + 1
-      while (startTime < 16 * 60 + 46 ) {
+      while (startTime < 11 * 60 + 31) {
+        let hh = Math.floor(startTime / 60)
+        let mm = startTime % 60
+        times[i] = ('' + (hh == 12 ? 12 : hh % 12)).slice(-2) + ':' + ('0' + mm).slice(-2) + ampm[Math.floor(hh/12)]
+        startTime = startTime + minPerInterval
+        i++
+      }
+      startTime = 13 * 60 + 20
+      while (startTime < 15 * 60 + 1) {
         let hh = Math.floor(startTime / 60)
         let mm = startTime % 60
         times[i] = ('' + (hh == 12 ? 12 : hh % 12)).slice(-2) + ':' + ('0' + mm).slice(-2) + ampm[Math.floor(hh/12)]
