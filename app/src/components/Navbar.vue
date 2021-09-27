@@ -98,6 +98,16 @@ a.navbar-logo
   &:focus
     box-shadow: 0 0 0 4px rgba(#5e72e4, 0.25)
 
+  @media screen and (max-width: 768px)
+    height: 32px
+    font-size: 14px
+  @media screen and (max-width: 640px)
+    height: 27px
+    font-size: 12px
+    .text
+      display: none
+
+
 .navbar-logo svg
   display: block
   width: auto
@@ -123,6 +133,10 @@ button.menu-item
     background-color: rgba(black, 0.075)
   &:focus
     box-shadow: 0 0 0 4px rgba(#5e72e4, 0.25)
+  @media screen and (max-width: 768px)
+    font-size: 14px
+  @media screen and (max-width: 640px)
+    font-size: 13px
 
 
 </style>
