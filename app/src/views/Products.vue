@@ -161,7 +161,17 @@ export default {
   .title h1
     margin: 0
     font-size: 32px
-    // text-align: center
+    @media screen and (max-width: 991px)
+      font-size: 27px
+    @media screen and (max-width: 768px)
+      font-size: 24px
+      text-align: center
+  p
+    @media screen and (max-width: 991px)
+      font-size: 0.95rem
+    @media screen and (max-width: 768px)
+      font-size: 0.875rem
+      text-align: center
 
 .products-list
   display: grid
@@ -217,6 +227,10 @@ export default {
     border-radius: 2px
   .title
     font-size: 16px
+    @media screen and (max-width: 991px)
+      font-size: 0.95rem
+    @media screen and (max-width: 768px)
+      font-size: 0.875rem
   .company-count
     margin-top: 8px
     font-size: 12px
