@@ -3,6 +3,9 @@
     <section class="mast">
       <div class="container">
         <div class="title">
+          <div class="svg">
+            <svgLogo/>
+          </div>
           <h2 v-html="$t('highlighted_name')"></h2>
           <h1>{{$t('title_general')}}</h1>
         </div>
@@ -69,6 +72,7 @@
 <script>
 import Categories from '@/views/home/Categories'
 import FeaturedProducts from '@/views/home/FeaturedProducts'
+import svgLogo from '@/components/svg/svgLogo'
 import svgMeet from '@/components/svg/svgMeet'
 import svgVariety from '@/components/svg/svgVariety'
 export default {
@@ -76,6 +80,7 @@ export default {
   components: {
     FeaturedProducts,
     Categories,
+    svgLogo,
     svgMeet,
     svgVariety
   },
@@ -98,12 +103,24 @@ export default {
 <style lang="stylus" scoped>
 
 .mast
-  min-height: 75vh
+  height: 75vh
+  min-height: 640px
   background: linear-gradient(150deg,#281483 15%,#8f6ed5 70%,#d782d9 94%)
   padding-top: var(--navbar-height)
+  padding-bottom: calc(var(--navbar-height) * 0.4)
   display: flex
   align-items: center
 
+  .svg
+    width: 100px
+    height: auto
+    margin: 0 auto 2rem
+  .svg svg
+    display: block
+    width: 100%
+    height: auto
+    fill: white
+    margin: 0 auto
   .text > .title
   .title
     color: white
