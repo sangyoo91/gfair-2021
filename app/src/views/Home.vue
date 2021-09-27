@@ -24,7 +24,7 @@
     <section class="section section--anywhere">
       <div class="container">
         <div class="row">
-          <div class="col-12 col-md-6">
+          <div class="col-12 col-sm-12 col-md-6">
             <div class="text">
               <h2>From anywhere by your convenience, with your computer or phone.</h2>
               <p>
@@ -33,7 +33,10 @@
               </p>
             </div>
           </div>
-          <div class="col-12 col-md-6">
+          <div class="col-12 col-sm-12 col-md-6">
+            <div class="icon-image-wrapper">
+              <svgMeet/>
+            </div>
           </div>
         </div>
       </div>
@@ -43,6 +46,9 @@
       <div class="container">
         <div class="row">
           <div class="col-12 col-sm-12 col-md-6">
+            <div class="icon-image-wrapper">
+              <svgVariety/>
+            </div>
           </div>
           <div class="col-12 col-sm-12 col-md-6">
             <div class="text text-right">
@@ -63,11 +69,15 @@
 <script>
 import Categories from '@/views/home/Categories'
 import FeaturedProducts from '@/views/home/FeaturedProducts'
+import svgMeet from '@/components/svg/svgMeet'
+import svgVariety from '@/components/svg/svgVariety'
 export default {
   name: 'Home',
   components: {
     FeaturedProducts,
-    Categories
+    Categories,
+    svgMeet,
+    svgVariety
   },
   mounted () {
     window.scrollTo(0, 0)
@@ -143,5 +153,15 @@ section.section .text
     max-width: 100%
     text-align: center
 
+.icon-image-wrapper
+  width: 100%
 
+  svg
+    display: block
+    width: 100%
+    height: auto
+
+  @media screen and (max-width: 768px)
+    margin: auto
+    max-width: 420px
 </style>
