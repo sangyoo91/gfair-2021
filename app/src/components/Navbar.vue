@@ -12,14 +12,37 @@
       </router-link>
 
       <div class="menu">
-        <button v-on:click="gotoCompanies" class="menu-item">
+        <!-- <button v-on:click="gotoCompanies" class="menu-item">
           {{$t('companies')}}
-        </button>
-        <Button v-on:click="gotoApplication">
+        </button> -->
+        <Button v-on:click="gotoApplication" class="btn-apply-now">
           {{$t('apply_now')}}
         </Button>
       </div>
-
+    </div>
+  </div>
+  <div class="navbar-sub">
+    <div class="container">
+      <div class="menu-sub">
+        <router-link :to="{name: 'Companies'}" class="menu-sub-item">
+          All Companies
+        </router-link>
+        <router-link :to="{name: 'Products'}" class="menu-sub-item">
+          All Products
+        </router-link>
+        <!-- <router-link>
+          {{$t('cat_beauty')}}
+        </router-link>
+        <router-link>
+          {{$t('cat_consumer')}}
+        </router-link>
+        <router-link>
+          {{$t('cat_electronics')}}
+        </router-link>
+        <router-link>
+          {{$t('cat_industrial')}}
+        </router-link> -->
+      </div>
     </div>
   </div>
 </div>
@@ -63,6 +86,11 @@ export default {
 
 <style lang="stylus" scoped>
 
+button.btn-apply-now
+  @media screen and (max-width: 640px)
+    padding-right: 8px
+    padding-left: 8px
+
 .navbar-outer
   position: fixed
   top: 0
@@ -76,6 +104,10 @@ export default {
   background-color: white
   border-bottom: 1px solid #EFEFEF
 
+.navbar-sub
+  height: calc( var(--navbar-sub-height))
+  background-color: white
+  border-bottom: 1px solid #EFEFEF
 
 .container
   // margin: 0 auto
@@ -104,8 +136,10 @@ a.navbar-logo
   @media screen and (max-width: 640px)
     height: 27px
     font-size: 12px
+  @media screen and (max-width: 480px)
     .text
-      display: none
+      font-size: 10px
+
 
 
 .navbar-logo svg
@@ -138,5 +172,19 @@ button.menu-item
   @media screen and (max-width: 640px)
     font-size: 13px
 
+.menu-sub
+  display: flex
+  justify-content: flex-end
+  margin: 0 -8px
+  width: calc(100% + 16px)
+  justify-content: center
+.menu-sub-item
+  display: inline-block
+  padding: 8px
+  color: var(--color-primary)
+  text-decoration: none
+  font-weight: 500
+  font-size: 15px
+  margin: 0 8px
 
 </style>

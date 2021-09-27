@@ -106,7 +106,7 @@ export default {
   height: 75vh
   min-height: 640px
   background: linear-gradient(150deg,#281483 15%,#8f6ed5 70%,#d782d9 94%)
-  padding-top: var(--navbar-height)
+  padding-top: calc( var(--navbar-height) + var(--navbar-sub-height))
   padding-bottom: calc(var(--navbar-height) * 0.4)
   display: flex
   align-items: center

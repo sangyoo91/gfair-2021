@@ -307,7 +307,7 @@ export default {
   color: #666
 
 .page
-  margin-top: var(--navbar-height)
+  margin-top: calc( var(--navbar-height) + var(--navbar-sub-height))
 
 .container
   max-width: 720px
@@ -315,7 +315,7 @@ export default {
 .mast
   height: 400px
   background: linear-gradient(150deg,#281483 15%,#8f6ed5 70%,#d782d9 94%)
-  padding-top: var(--navbar-height)
+  padding-top: calc( var(--navbar-height) + var(--navbar-sub-height))
   display: flex
   align-items: center
   color: white

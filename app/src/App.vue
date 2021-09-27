@@ -72,7 +72,7 @@ body
 .app-content
   flex: 1
   &.has-notice
-    padding-top: var(--navbar-height)
+    padding-top: calc( var(--navbar-height) + var(--navbar-sub-height))
 
 h1, h2, h3
   font-weight: 400
