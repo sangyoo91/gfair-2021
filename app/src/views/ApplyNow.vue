@@ -166,7 +166,10 @@ export default {
         if (company)
           if (!this.selectedCompanies.find((c)=> c.id === to))
             company = Object.assign({}, company)
-            company.time = '8:45AM'
+            company.time = {
+              mins: 9 * 60,
+              str: '9:00AM'
+            }
             this.selectedCompanies.push(company)
           // this.selectedCompanies.push(Object.assign({}, company))
       }
@@ -244,6 +247,7 @@ export default {
         if (!company.time) {
           return this.$toast.error(`Please select a time for ${this.$getFromLang(company.name)}.`)
         }
+        this.selectedCompanies[i].date = this.categories.find((c)=> c.id === company.category.id).dateStr
         formData.selectedCompanies.push(company)
       }
 

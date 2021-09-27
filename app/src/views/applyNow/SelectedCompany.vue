@@ -15,8 +15,8 @@
         <div class="company-time">
           <div class="input-wrapper">
             <select v-model="company.time">
-              <option v-for="time in getTimes()" :key="time" :value="time">
-                {{time}}
+              <option v-for="time in getTimes()" :key="time.str" :value="time">
+                {{time.str}}
               </option>
             </select>
           </div>
@@ -42,7 +42,10 @@ export default {
       while (startTime < 11 * 60 + 31) {
         let hh = Math.floor(startTime / 60)
         let mm = startTime % 60
-        times[i] = ('' + (hh == 12 ? 12 : hh % 12)).slice(-2) + ':' + ('0' + mm).slice(-2) + ampm[Math.floor(hh/12)]
+        times[i] = {
+          mins: startTime,
+          str: ('' + (hh == 12 ? 12 : hh % 12)).slice(-2) + ':' + ('0' + mm).slice(-2) + ampm[Math.floor(hh/12)]
+        }
         startTime = startTime + minPerInterval
         i++
       }
@@ -50,7 +53,10 @@ export default {
       while (startTime < 15 * 60 + 1) {
         let hh = Math.floor(startTime / 60)
         let mm = startTime % 60
-        times[i] = ('' + (hh == 12 ? 12 : hh % 12)).slice(-2) + ':' + ('0' + mm).slice(-2) + ampm[Math.floor(hh/12)]
+        times[i] = {
+          mins: startTime,
+          str: ('' + (hh == 12 ? 12 : hh % 12)).slice(-2) + ':' + ('0' + mm).slice(-2) + ampm[Math.floor(hh/12)]
+        }
         startTime = startTime + minPerInterval
         i++
       }

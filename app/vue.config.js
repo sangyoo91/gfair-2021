@@ -7,7 +7,7 @@ module.exports = {
     config
         .plugin('html')
         .tap(args => {
-            args[0].title = "G-Trade 2021 - Good Merchandise Online Trade Meet Korea";
+            args[0].title = "G-Fair 2021 - Good Merchandise Online Trade Meet Korea";
             return args;
         })
   },
