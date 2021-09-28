@@ -364,6 +364,9 @@ export default {
           'event_label': "Apply Successful",
           'value': `[${formData.code}] ${formData.user_company} - ${formData.user_name} - ${formData.selectedCompanies.length} Companies`
         })
+        this.$nextTick(()=> {
+          window.scrollTo(0, 0)
+        })
         return this.$toast.success("Application complete")
       }).catch(()=> {
         return this.$toast.error("Something went wrong")
@@ -410,7 +413,9 @@ export default {
 
 .success-date-group
   margin: 0 0 1rem
-
+  padding-bottom: 1rem
+  @media screen and (max-width: 440px)
+    border-bottom: 1px dotted #DEDEDE
 .success-date-group-title
   margin: 0 0 0.5rem
   font-weight: bold
@@ -425,8 +430,17 @@ export default {
   align-items: center
   justify-content: space-between
   margin: 0 -4px
+  border-bottom: 1px dotted #EFEFEF
+  &:last-child
+    border: 0
+  @media screen and (max-width: 440px)
+    padding: 0 8px
   .name, .time
     padding: 4px
+  @media screen and (max-width: 440px)
+    font-size: 0.875rem
+
+
 
 .success-details
   max-width: 540px
@@ -487,6 +501,18 @@ p.success-desc
   padding: 16px
   margin: 0 -16px 8px -16px
   border: 1px solid #DEDEDE
+  @media screen and (max-width: 768px)
+    margin: 0 -16px 8px -16px
+  @media screen and (max-width: 440px)
+    border: 0
+    margin: 0 -12px 0 -12px
+    padding: 12px
+    border-top: 1px dotted #DEDEDE
+    &:last-child
+      border-bottom: 1px dotted #DEDEDE
+
+
+
 .date-group-title
   font-size: 16px
   margin-bottom: 8px
@@ -535,6 +561,11 @@ p.success-desc
   border: 1px solid #DEDEDE
   &.success
     padding: 32px 8px
+  @media screen and (max-width: 768px)
+    padding: 32px 24px
+  @media screen and (max-width: 440px)
+    padding: 24px 12px
+
 p.form-desc
   margin: 0 auto 1rem
 

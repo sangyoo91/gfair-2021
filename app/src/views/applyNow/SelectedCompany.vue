@@ -89,6 +89,9 @@ export default {
   padding: 2px
   border: 1px solid #DDD
   margin-right: 4px
+  @media screen and (max-width: 440px)
+    width: 36px
+    height: 36px
 
   img
     width: 100%
@@ -97,6 +100,8 @@ export default {
 
 .company-name
   font-weight: bold
+  @media screen and (max-width: 440px)
+    font-size: 14px
 
 .input-wrapper
   flex: 1
