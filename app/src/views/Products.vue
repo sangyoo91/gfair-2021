@@ -210,7 +210,8 @@ export default {
   // display: flex
   // align-items: center
   // justify-content: center
-
+  @media screen and (max-width: 640px)
+    grid-template-columns: 1fr
 .category-item
   position: relative
   display: flex
@@ -232,6 +233,9 @@ export default {
       font-size: 0.95rem
     @media screen and (max-width: 768px)
       font-size: 0.875rem
+  @media screen and (max-width: 768px)
+    .active &
+      background-color: rgba(#5e72e4, 0.05)
   .company-count
     margin-top: 8px
     font-size: 12px
@@ -251,6 +255,8 @@ export default {
     font-weight: 700
   &:before
     opacity: 1
+    @media screen and (max-width: 768px)
+      opacity: 0
 
 
 

@@ -205,11 +205,12 @@ export default {
 
 .table-row
   display: grid
-  grid-template-columns: minmax(48px, 72px) 1fr 2fr
+  grid-template-columns: 48px 1fr 2fr
   border-bottom: 1px solid #efefef
   &.table-head-row
   &:last-child
     border: 0
+  // @media screen and (max-width: 640px)
 
 .cell
   padding: 8px
@@ -234,6 +235,8 @@ export default {
   // display: flex
   // align-items: center
   // justify-content: center
+  @media screen and (max-width: 640px)
+    grid-template-columns: 1fr
 
 .category-item
   position: relative
@@ -256,6 +259,9 @@ export default {
       font-size: 0.95rem
     @media screen and (max-width: 768px)
       font-size: 0.875rem
+  @media screen and (max-width: 768px)
+    .active &
+      background-color: rgba(#5e72e4, 0.05)
   .company-count
     margin-top: 8px
     font-size: 12px
@@ -269,13 +275,15 @@ export default {
     // background-color: var(--color-primary)
     background: linear-gradient(150deg,#281483 15%,#8f6ed5 70%,#d782d9 94%)
     opacity: 0
+
 .category-item-wrapper.active .category-item
   // background-color: rgba(#5e72e4)
   .title
     font-weight: 700
   &:before
     opacity: 1
-
+    @media screen and (max-width: 768px)
+      opacity: 0
 
 
 </style>
