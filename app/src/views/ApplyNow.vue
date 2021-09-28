@@ -25,7 +25,11 @@
             <div class="form-group">
               <div class="input-wrapper">
                 <label>{{$t('form_invite_code')}}</label>
-                <select v-model="user_code">
+                <select v-model="user_code" :class="{
+                  error: errorKey === 'user_code',
+                  'not-selected': !user_code
+                }" ref="user_code">
+                  <option :value="false" disabled hidden>Select an Invite Code</option>
                   <option :value="code" v-for="code in codes" :key="code.id">
                     {{code.code}}
                   </option>
@@ -36,21 +40,27 @@
             <div class="form-group">
               <div class="input-wrapper">
                 <label>{{$t('form_your_company')}}</label>
-                <input type="text" v-model.trim="user_company" :placeholder="$t('placeholder_your_company')">
+                <input type="text" v-model.trim="user_company" :placeholder="$t('placeholder_your_company')" :class="{
+                  error: errorKey === 'user_company'
+                }" ref="user_company">
                 <div class="input-error"></div>
               </div>
             </div>
             <div class="form-group">
               <div class="input-wrapper">
                 <label>{{$t('form_your_name')}}</label>
-                <input type="text" v-model.trim="user_name" :placeholder="$t('placeholder_your_name')">
+                <input type="text" v-model.trim="user_name" :placeholder="$t('placeholder_your_name')" :class="{
+                  error: errorKey === 'user_name'
+                }" ref="user_name">
                 <div class="input-error"></div>
               </div>
             </div>
             <div class="form-group">
               <div class="input-wrapper">
                 <label>{{$t('form_your_job_position')}}</label>
-                <input type="text" v-model.trim="user_job_position" :placeholder="$t('placeholder_your_job_position')">
+                <input type="text" v-model.trim="user_job_position" :placeholder="$t('placeholder_your_job_position')" :class="{
+                  error: errorKey === 'user_job_position'
+                }" ref="user_job_position">
                 <div class="input-error"></div>
               </div>
             </div>
@@ -59,7 +69,9 @@
                 <div class="col-sm-12 col-md-6">
                   <div class="input-wrapper">
                     <label>{{$t('form_your_email')}}</label>
-                    <input type="text" v-model.trim="user_email" :placeholder="$t('placeholder_your_email')">
+                    <input type="text" v-model.trim="user_email" :placeholder="$t('placeholder_your_email')" :class="{
+                      error: errorKey === 'user_email'
+                    }" ref="user_email">
                     <div class="input-error"></div>
                   </div>
                 </div>
@@ -69,7 +81,10 @@
                     <!-- <input type="text" v-model.trim="user_mobile" :placeholder="$t('placeholder_your_mobile')"> -->
                     <imask-input type="text" v-model.trim="user_mobile"
                                 :placeholder="$t('placeholder_your_mobile')"
-                                :mask="mobileMask"/>
+                                :mask="mobileMask"
+                                :class="{
+                                  error: errorKey === 'user_mobile'
+                                }" ref="user_mobile"/>
                     <div class="input-error"></div>
                   </div>
                 </div>
@@ -80,7 +95,10 @@
               <div class="row">
                 <div class="col-sm-12 col-md-6">
                   <div class="input-wrapper">
-                    <select v-model="categoryId" placeholder="Choose a date">
+                    <select v-model="categoryId" placeholder="Choose a date" :class="{
+                      'not-selected': !categoryId
+                    }">
+                      <option :value="false" disabled hidden>Select a date/category</option>
                       <option :value="category.id" v-for="category in categories" :key="category.id">
                         [{{$t(category.i18n.date)}}] {{$t(category.i18n.cat)}}
                       </option>
@@ -89,7 +107,11 @@
                 </div>
                 <div class="col-sm-12 col-md-6">
                   <div class="input-wrapper">
-                    <select v-model="companyId" placeholder="Select a company">
+                    <select v-model="companyId" placeholder="Select a company" :class="{
+                      'not-selected': !companyId,
+                      'disabled': !categoryId
+                    }">
+                      <option :value="false" disabled hidden>Select a company</option>
                       <option :value="company.id" v-for="company in companiesInSelectedDate" :key="company.id">
                         [{{company.boothNumber}}] {{$getFromLang(company.name)}}
                       </option>
@@ -189,6 +211,7 @@ import {IMaskComponent} from 'vue-imask'
 export default {
   data() {
     return {
+      errorKey: false,
       isLoading: false,
       didSuccess: false,
       user_code: false,
@@ -212,6 +235,9 @@ export default {
     Checkmark,
     'imask-input': IMaskComponent
   },
+  mounted() {
+    window.scrollTo(0, 0)
+  },
   watch: {
     companyId(to) {
       // console.log('to', to)
@@ -226,6 +252,7 @@ export default {
               str: '9:00AM'
             }
             this.selectedCompanies.push(company)
+            this.companyId =  false
           }
           // this.selectedCompanies.push(Object.assign({}, company))
       }
@@ -261,31 +288,44 @@ export default {
       return re.test(String(email).toLowerCase())
     },
     submitApplication() {
-      this.testForm()
-
+      // this.testForm()
+      this.errorKey = false
       let mobile = this.user_mobile.replace(/-/gi, '')
 
       if (!this.user_code) {
+        this.errorKey = 'user_code'
+        this.$refs['user_code'].focus()
         return this.$toast.error("You must select a invite code.")
       }
 
       if (this.user_company.trim().length < 1) {
+        this.errorKey = 'user_company'
+        this.$refs['user_company'].focus()
         return this.$toast.error("Please input your company name.")
       }
 
       if (this.user_name.trim().length < 3) {
+        this.errorKey = 'user_name'
+        this.$refs['user_name'].focus()
         return this.$toast.error("Please input your name.")
       }
 
       if (this.user_job_position.trim().length < 3) {
+        this.errorKey = 'user_job_position'
+        this.$refs['user_job_position'].focus()
         return this.$toast.error("Please input your job position.")
       }
 
       if (!this.validateEmail(this.user_email)) {
+        this.errorKey = 'user_email'
+        this.$refs['user_email'].focus()
         return this.$toast.error("Please input a proper email.")
       }
 
       if (mobile.trim().length !== 10 && mobile.trim().length !== 11) {
+        this.errorKey = 'user_mobile'
+        console.log(this.$refs['user_mobile'])
+        this.$refs['user_mobile'].$el.focus()
         return this.$toast.error("Please input a proper mobile number.")
       }
 
@@ -499,7 +539,7 @@ p.form-desc
   margin: 0 auto 1rem
 
 .input-wrapper
-  margin-bottom: 8px
+  margin-bottom: 16px
 
 .input-wrapper label
   font-size: 13px
@@ -513,7 +553,7 @@ p.form-desc
   height: 42px
   width: 100%
   background-color: #F6FAFD
-  border: 1px solid #DDD
+  border: 1px solid #d8e0e6
   border-radius: 2px
   outline: 0
   padding: 0 8px
@@ -522,8 +562,22 @@ p.form-desc
     border-color: #5e72e4
     box-shadow: 0 0 0 4px rgba(#5e72e4, 0.25)
   &::placeholder
-    color: #CCC
+    color: #cbd0d4
     font-weight: 300
+  &.error
+    border: 1px solid #DE6F6F
+    background-color: #F7C7CB + 70%
+  &.error:focus
+    border-color: #DE6F6F
+    box-shadow: 0 0 0 4px rgba(#DE6F6F, 0.25)
+  &.error::placeholder
+    color: #F7C7CB
+  &.not-selected:not(:focus):not(:active)
+    color: #cbd0d4
+  &.disabled
+    user-select: none
+    pointer-events: none
+    opacity: 0.5
 
 .form-button
   margin-top: 1rem
@@ -533,8 +587,8 @@ p.form-desc
 .selected-companies-message
   padding: 32px
   text-align: center
-  border: 1px solid #DFDFDF
-  background-color: #FAFAFA
+  background-color: #F6FAFD
+  border: 1px solid #d8e0e6
   color: #2F2E41
   font-size: 16px
 
