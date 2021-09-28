@@ -97,6 +97,9 @@ export default {
   margin: 0 auto
   padding: 0 16px
 
+  @media screen and (max-width: 1280px)
+    flex-direction: column-reverse
+
 .footer-logo
   height: 40px
   display: flex
@@ -118,6 +121,9 @@ export default {
     font-weight: 400
     font-size: 12px
 
+.language-selector
+  @media screen and (max-width: 1280px)
+    margin-bottom: 2rem
 .language-selector label
   font-size: 12px
   display: none

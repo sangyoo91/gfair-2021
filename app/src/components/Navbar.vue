@@ -24,10 +24,14 @@
   <div class="navbar-sub">
     <div class="container">
       <div class="menu-sub">
-        <router-link :to="{name: 'Companies'}" class="menu-sub-item">
+        <router-link :to="{name: 'Companies'}" class="menu-sub-item" :class="{
+          active: $route.name === 'Companies'
+        }">
           All Companies
         </router-link>
-        <router-link :to="{name: 'Products'}" class="menu-sub-item">
+        <router-link :to="{name: 'Products'}" class="menu-sub-item" :class="{
+          active: $route.name === 'Products'
+        }">
           All Products
         </router-link>
         <!-- <router-link>
@@ -186,5 +190,7 @@ button.menu-item
   font-weight: 500
   font-size: 15px
   margin: 0 8px
-
+  border-radius: 4px
+  &.active
+    background-color: #f0f2ff
 </style>
