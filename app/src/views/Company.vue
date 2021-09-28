@@ -10,7 +10,7 @@
         <div class="strip">
           <router-link class="strip-title" :to="{
             name: 'Companies', params: {
-              categoryId: company.category.id
+              categoryName: company.category.id
             }
           }">
             {{company.boothNumber}} |
