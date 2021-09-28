@@ -319,6 +319,11 @@ export default {
       axios.post(`${this.$functionsUrl}/applications/apply`, formData)
       .then(()=> {
         this.didSuccess = true
+        this.$gtag.event('apply_for_event', {
+          'event_category': "Apply",
+          'event_label': "Apply Successful",
+          'value': `[${formData.code}] ${formData.user_company} - ${formData.user_name} - ${formData.selectedCompanies.length} Companies`
+        })
         return this.$toast.success("Application complete")
       }).catch(()=> {
         return this.$toast.error("Something went wrong")
@@ -361,7 +366,7 @@ export default {
 .success-selected-companies
   max-width: 540px
   margin: 2rem auto 0
-  color: #333
+  color: #2F2E41
 
 .success-date-group
   margin: 0 0 1rem
@@ -387,7 +392,7 @@ export default {
   max-width: 540px
   margin: 2rem auto 0
   border: 1px solid #EFEFEF
-  color: #333
+  color: #2F2E41
   .sd-r
     display: grid
     grid-template-columns: 0.75fr 2fr
@@ -448,22 +453,21 @@ p.success-desc
   color: #666
 
 .page
-  margin-top: calc( var(--navbar-height) + var(--navbar-sub-height))
+  margin-top: calc( var(--navbar-height) )
 
 .container
   max-width: 720px
 
 .mast
-  height: 400px
+  height: 420px
   background: linear-gradient(150deg,#281483 15%,#8f6ed5 70%,#d782d9 94%)
   padding-top: calc( var(--navbar-height) + var(--navbar-sub-height))
   display: flex
   align-items: center
   color: white
   text-align: center
-
   .title
-    margin: 0 auto 95px
+    margin: 0 auto 145px
   .title h1
     margin: 0
     font-size: 32px
@@ -531,7 +535,7 @@ p.form-desc
   text-align: center
   border: 1px solid #DFDFDF
   background-color: #FAFAFA
-  color: #333
+  color: #2F2E41
   font-size: 16px
 
 </style>

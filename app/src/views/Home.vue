@@ -11,14 +11,15 @@
         </div>
         <p>{{$t('mast_text')}}</p>
 
-        <div class="date-wrapper">
-          <label for="">
-            Date
-          </label>
-          <div class="date">
-            {{$t('date_verbose')}}
+        <div class="card">
+          <div class="date-wrapper">
+            <label for="">
+              Date
+            </label>
+            <div class="date">
+              {{$t('date_verbose')}}
+            </div>
           </div>
-
         </div>
       </div>
 
@@ -103,9 +104,10 @@ export default {
 <style lang="stylus" scoped>
 
 .mast
-  height: 75vh
-  min-height: 640px
+  height: 50vh
+  min-height: 700px
   background: linear-gradient(150deg,#281483 15%,#8f6ed5 70%,#d782d9 94%)
+  // background: linear-gradient(150deg, #6C63FF 15%, #FF6584 94%)
   padding-top: calc( var(--navbar-height) + var(--navbar-sub-height))
   padding-bottom: calc(var(--navbar-height) * 0.4)
   display: flex
@@ -130,30 +132,53 @@ export default {
     font-size: 14px
     margin: 0
     text-align: center
+    font-weight: 700
 
   .text > .title h1
   .title h1
     margin: 0
     font-size: 32px
     text-align: center
+    font-weight: 700
+
+.mast .card
+  padding: 24px 32px 32px
+  background-color: white
+  max-width: 440px
+  border-radius: 16px
+  box-shadow: 0 16px 32px rgba(black, 0.15)
+  margin: 0 auto
+  border: 1px solid #EFEFEF
+  color: #2F2E41
+
+
+.date-wrapper label
+  display: block
+  text-align: center
+  margin: 0 auto 8px
+  // color: white
+  font-weight: bold
+  text-transform: uppercase
+  opacity: 0.95
+  font-size: 0.95rem
+  @media screen and (max-width: 991px)
+    font-size: 0.875rem
+  @media screen and (max-width: 768px)
+    font-size: 0.8rem
+.date-wrapper .date
+  text-align: center
+  font-size: 21px
+  @media screen and (max-width: 991px)
+    font-size: 18px
+  @media screen and (max-width: 768px)
+    font-size: 16px
+
 
 .mast p
   max-width: 520px
   margin: 32px auto
   text-align: center
   color: rgba(white, 0.75)
-
-.date-wrapper label
-  display: block
-  text-align: center
-  margin: 0 auto 4px
-  color: white
-  opacity: 0.85
-
-.date-wrapper .date
-  text-align: center
-  font-size: 1.25rem
-  color: white
 
 section.section
   padding: 72px 0 128px

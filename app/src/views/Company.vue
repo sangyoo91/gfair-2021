@@ -89,7 +89,7 @@ export default {
 .section--page
   position: relative
   // padding-top: calc(var(--navbar-height) + 30px)
-  color: #333
+  color: #2F2E41
   background-color: white
   margin-top: -10vh
   padding: 32px
@@ -182,7 +182,7 @@ export default {
   font-size: 1rem
   padding: 0 0 1.5rem
   margin: 0 0 2rem
-  color: #333
+  color: #2F2E41
   border-bottom: 1px solid #EFEFEF
 
 h1.company-products-title

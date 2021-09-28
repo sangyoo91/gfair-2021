@@ -145,7 +145,7 @@ export default {
   height: 52px
   display: flex
   align-items: center
-  color: #333
+  color: #2F2E41
 
 .product-desc
   font-size: 14px

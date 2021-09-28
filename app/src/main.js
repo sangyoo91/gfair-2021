@@ -6,9 +6,17 @@ import i18n from './i18n'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
+import VueGtag from "vue-gtag"
 
 // import style (>= Swiper 6.x)
 import 'swiper/css/swiper.css'
+Vue.use(VueGtag, {
+  config: {
+    id: "G-Q0YK2CZ3MS",
+  },
+  appName: "gfair2021-14929",
+  pageTrackerScreenviewEnabled: true
+}, router)
 
 
 if (process.env.NODE_ENV === 'development') {

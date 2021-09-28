@@ -132,7 +132,7 @@ h2.product-name
   margin: 0 0 2rem
   font-size: 21px
   font-weight: bold
-  color: #333
+  color: #2F2E41
 
 .product-desc
   margin: 0 0 1rem
@@ -140,7 +140,7 @@ h2.product-name
   .title
     margin: 0 0 0.875rem
     font-size: 0.95rem
-    color: #333
+    color: #2F2E41
 
   p
     margin: 0

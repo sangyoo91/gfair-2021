@@ -26,16 +26,16 @@ export default {
   },
   methods: {
     async loadCodes() {
-      console.log("request Load Codes")
+      // console.log("request Load Codes")
       const data = await db.collection('codes').get()
       this.$store.commit("SET_CODES_FROM_DOCS", data.docs)
-      console.log("loadCodes", data)
+      // console.log("loadCodes", data)
     },
     async loadCompanies() {
-      console.log("request Load Companies")
+      // console.log("request Load Companies")
       const data = await db.collection('companies').get()
       this.$store.commit("SET_COMPANIES_FROM_DOCS", data.docs)
-      console.log("loadCompanies", data)
+      // console.log("loadCompanies", data)
     }
   },
   computed: {
@@ -56,7 +56,7 @@ html
   font-size: 1rem
   height: 100%
   font-family: 'Open Sans', Arial, Helvetica, sans-serif
-
+  color: #2F2E41
 body
   display: flex
   width: 100%

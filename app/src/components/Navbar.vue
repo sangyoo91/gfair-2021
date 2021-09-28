@@ -104,7 +104,7 @@ button.btn-apply-now
 
 .navbar
   height: calc( var(--navbar-height))
-  color: #333
+  color: #2F2E41
   background-color: white
   border-bottom: 1px solid #EFEFEF
 

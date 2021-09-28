@@ -131,7 +131,7 @@ export default {
     border: 1px solid #CCC
     background-color: #F0F0F0
     border-radius: 2px
-    color: #333
+    color: #2F2E41
     &:hover
       background-color: #EAEAEA
     &:focus
