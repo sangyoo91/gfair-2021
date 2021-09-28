@@ -1,7 +1,7 @@
 <template>
   <div class="company">
     <div class="row">
-      <div class="col-sm-12 col-md-8">
+      <div class="col-sm-12 col-md-7">
         <div class="company-meta">
           <div class="company-logo">
             <img :src="company.logo.image.url" v-if="company.logo && company.logo.thumb"/>
@@ -11,7 +11,7 @@
           </div>
         </div>
       </div>
-      <div class="col-sm-12 col-md-4">
+      <div class="col-sm-12 col-md-5">
         <div class="company-time">
           <div class="input-wrapper">
             <select v-model="company.time">
@@ -20,6 +20,9 @@
               </option>
             </select>
           </div>
+          <button class="btn-remove" v-on:click="$emit('remove', company.id)">
+            <svgCross/>
+          </button>
         </div>
       </div>
     </div>
@@ -27,10 +30,15 @@
 </template>
 
 <script>
+import svgCross from '@/components/svg/svgCross'
+
 export default {
   props: [
     'company'
   ],
+  components: {
+    svgCross
+  },
   methods: {
     getTimes() {
       let minPerInterval = 50
@@ -90,6 +98,8 @@ export default {
 .company-name
   font-weight: bold
 
+.input-wrapper
+  flex: 1
 .input-wrapper input
 .input-wrapper select
   height: 42px
@@ -105,4 +115,32 @@ export default {
   &::placeholder
     color: #CCC
     font-weight: 300
+
+.company-time
+  display: flex
+  align-items: center
+
+  button
+    width: 32px
+    height: 32px
+    margin-left: 4px
+    display: flex
+    align-items: center
+    justify-content: center
+    outline: 0
+    border: 1px solid #CCC
+    background-color: #F0F0F0
+    border-radius: 2px
+    color: #333
+    &:hover
+      background-color: #EAEAEA
+    &:focus
+      border-color: #5e72e4
+      box-shadow: 0 0 0 2px rgba(#5e72e4, 0.25)
+
+  button svg
+    display: block
+    width: 8px
+    height: auto
+    fill: currentColor
 </style>

@@ -48,6 +48,7 @@ export default {
 <style lang="stylus" scoped>
 
 button
+  position: relative
   font-size: 0.875rem
   padding: 0.625rem 1.25rem
   color: var(--color-primary)
@@ -75,6 +76,7 @@ button
     color: white
     &:after
       border-color: white
+      border-top-color: transparent
 
   &:focus
     box-shadow: 0 0 0 4px rgba(#5e72e4, 0.25)
@@ -88,16 +90,18 @@ button
     transform: translate3d(-50%, -50%, 0)
     border: 2px solid var(--color-primary)
     border-top-color: transparent
+    margin-top: -0.625rem
+    margin-left: -0.625rem
     border-radius: 50%
     content: ""
     opacity: 0
     transition: opacity 200ms
 
   &.loading
-    color: transparent
+    color: transparent !important
 
   &.loading:after
-    opacity: 1
+    opacity: 1 !important
     animation-name: spin
     animation-duration: 1s
     animation-iteration-count: infinite
@@ -108,4 +112,10 @@ button:hover
   &.button--primary
     color: white
 
+
+@keyframes spin
+  0%
+    transform: rotate(0deg)
+  100%
+    transform: rotate(360deg)
 </style>

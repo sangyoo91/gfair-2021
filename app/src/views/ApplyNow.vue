@@ -105,7 +105,9 @@
                   </div>
 
                   <div class="selected-companies">
-                    <SelectedCompany v-for="company in selectedCompaniesInCategory(category.id)" :key="company.id" :company="company"/>
+                    <SelectedCompany v-for="company in selectedCompaniesInCategory(category.id)"
+                                    :key="company.id" :company="company"
+                                    v-on:remove="removeCompany"/>
                   </div>
                 </div>
               </div>
@@ -176,6 +178,9 @@ export default {
     }
   },
   methods: {
+    removeCompany(companyId) {
+      return this.selectedCompanies = this.selectedCompanies.filter((c)=> c.id !== companyId)
+    },
     selectedCompaniesInCategory(categoryId) {
       return this.selectedCompanies.filter((c)=> c.category.id === categoryId)
     },
@@ -361,6 +366,7 @@ p.form-desc
   border-radius: 2px
   outline: 0
   padding: 0 8px
+  appearance: none
   &:focus
     border-color: #5e72e4
     box-shadow: 0 0 0 4px rgba(#5e72e4, 0.25)
@@ -372,5 +378,13 @@ p.form-desc
   margin-top: 1rem
   width: 100%
   height: 42px
+
+.selected-companies-message
+  padding: 32px
+  text-align: center
+  border: 1px solid #DFDFDF
+  background-color: #FAFAFA
+  color: #333
+  font-size: 16px
 
 </style>
