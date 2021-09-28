@@ -9,16 +9,16 @@
     </div>
   </section>
   <div class="container">
-    <section class="section--application">
+    <section class="section--application" v-if="!didSuccess">
       <div class="row">
         <div class="col-12 col-sm-12 col-md-12">
 
         </div>
         <div class="col-12 col-sm-12 col-md-12">
 
-          <p class="form-desc">
+          <!-- <p class="form-desc">
             Please carefully input your details.
-          </p>
+          </p> -->
 
           <form action="" v-on:submit.prevent>
 
@@ -124,7 +124,41 @@
         </div>
 
       </div>
-      </section>
+    </section>
+    <section class="section--application success" v-else>
+
+      <Checkmark/>
+      <h2 class="success-title">You have successfully applied for G-Fair 2021!</h2>
+      <p class="success-desc">
+        We have sent you an e-mail on details of your applications.
+        <br/>
+        Our staff will get back to you as soon as possible.
+      </p>
+
+      <div class="success-details">
+        <div class="sd-r">
+          <div class="c head">{{$t('form_your_company')}}</div>
+          <div class="c">{{user_company}}</div>
+        </div>
+        <div class="sd-r">
+          <div class="c head">{{$t('form_your_name')}}</div>
+          <div class="c">{{user_name}}</div>
+        </div>
+        <div class="sd-r">
+          <div class="c head">{{$t('form_your_job_position')}}</div>
+          <div class="c">{{user_job_position}}</div>
+        </div>
+        <div class="sd-r">
+          <div class="c head">{{$t('form_your_email')}}</div>
+          <div class="c">{{user_email}}</div>
+        </div>
+        <div class="sd-r">
+          <div class="c head">{{$t('form_your_mobile')}}</div>
+          <div class="c">{{user_mobile}}</div>
+        </div>
+
+      </div>
+    </section>
   </div>
 
 </div>
@@ -132,6 +166,7 @@
 
 <script>
 import axios from 'axios'
+import Checkmark from '@/components/Checkmark'
 import Button from '@/components/el/button'
 import SelectedCompany from '@/views/applyNow/SelectedCompany'
 import {IMaskComponent} from 'vue-imask'
@@ -140,6 +175,7 @@ export default {
   data() {
     return {
       isLoading: false,
+      didSuccess: false,
       user_code: false,
       user_company: "",
       user_name: "",
@@ -158,6 +194,7 @@ export default {
   components: {
     Button,
     SelectedCompany,
+    Checkmark,
     'imask-input': IMaskComponent
   },
   watch: {
@@ -263,6 +300,7 @@ export default {
 
       axios.post(`${this.$functionsUrl}/applications/apply`, formData)
       .then(()=> {
+        this.didSuccess = true
         return this.$toast.success("Application complete")
       }).catch(()=> {
         return this.$toast.error("Something went wrong")
@@ -302,6 +340,60 @@ export default {
 
 <style lang="stylus" scoped>
 
+.success-details
+  max-width: 540px
+  margin: 1rem auto 0
+  border: 1px solid #EFEFEF
+  color: #333
+  .sd-r
+    display: grid
+    grid-template-columns: 0.75fr 2fr
+    align-items: center
+    border-bottom: 1px solid #EFEFEF
+    @media screen and (max-width: 768px)
+      grid-template-columns: 1fr 2fr
+    @media screen and (max-width: 440px)
+      display: block
+      padding: 12px 8px
+
+  .sd-r:last-child
+    border-bottom: 0
+
+  .c
+    padding: 8px
+    @media screen and (max-width: 991px)
+      font-size: 0.95rem
+    @media screen and (max-width: 768px)
+      font-size: 0.875rem
+    @media screen and (max-width: 440px)
+      padding: 0
+  .c:not(.head)
+    text-align: center
+
+  .c.head
+    font-weight: bold
+    border-right: 1px solid #EFEFEF
+    @media screen and (max-width: 440px)
+      text-align: center
+      font-size: 0.75rem
+      margin-bottom: 0.5rem
+
+h2.success-title
+  margin: 0 auto 1rem
+  text-align: center
+  max-width: 400px
+  @media screen and (max-width: 991px)
+    font-size: 27px
+  @media screen and (max-width: 768px)
+    font-size: 24px
+p.success-desc
+  text-align: center
+  margin: 0 auto
+  @media screen and (max-width: 991px)
+    font-size: 0.95rem
+  @media screen and (max-width: 768px)
+    font-size: 0.875rem
+
 .date-group
   padding: 16px
   margin: 0 -16px 8px -16px
@@ -331,10 +423,20 @@ export default {
   .title h1
     margin: 0
     font-size: 32px
+    @media screen and (max-width: 991px)
+      font-size: 27px
+    @media screen and (max-width: 768px)
+      font-size: 24px
+      text-align: center
     // text-align: center
   .title p
     max-width: 480px
     margin: 1em auto 0
+    @media screen and (max-width: 991px)
+      font-size: 0.95rem
+    @media screen and (max-width: 768px)
+      font-size: 0.875rem
+      text-align: center
 
 .section--application
   background-color: white
@@ -343,7 +445,8 @@ export default {
   padding: 32px
   border-radius: 4px
   border: 1px solid #DEDEDE
-
+  &.success
+    padding: 32px 8px
 p.form-desc
   margin: 0 auto 1rem
 
