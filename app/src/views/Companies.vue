@@ -172,7 +172,7 @@ export default {
 <style lang="stylus" scoped>
 
 .mast
-  min-height: 33vh
+  min-height: 400px
   background: linear-gradient(150deg,#281483 15%,#8f6ed5 70%,#d782d9 94%)
   padding-top: calc( var(--navbar-height) + var(--navbar-sub-height))
   display: flex
