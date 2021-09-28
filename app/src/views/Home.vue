@@ -48,13 +48,13 @@
     <section class="section section--network">
       <div class="container">
         <div class="row">
-          <div class="col-12 col-sm-12 col-md-6">
+          <div class="col-12 col-sm-12 col-md-6 order-sm-12 order-12">
             <div class="icon-image-wrapper">
               <svgVariety/>
             </div>
           </div>
-          <div class="col-12 col-sm-12 col-md-6">
-            <div class="text text-right">
+          <div class="col-12 col-sm-12 col-md-6 ">
+            <div class="text">
               <h2>A wide selection of different companies and products</h2>
               <p>
                 We have a wide selection of companies and products that you can choose from across a variety of industries.
@@ -165,7 +165,8 @@ section.section
 section.section .text
   &.text-right
     text-align: right
-
+    @media screen and (max-width: 768px)
+      text-align: center
   &.text-center
     max-width: 100%
     text-align: center
