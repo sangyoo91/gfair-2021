@@ -191,6 +191,8 @@ button.menu-item
   font-size: 15px
   margin: 0 8px
   border-radius: 4px
+  &:hover
+    background-color: rgba(#f0f2ff, 0.45)
   &.active
     background-color: #f0f2ff
 </style>
