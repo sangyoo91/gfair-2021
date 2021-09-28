@@ -413,30 +413,31 @@ export default {
 
 .success-date-group
   margin: 0 0 1rem
-  padding-bottom: 1rem
-  @media screen and (max-width: 440px)
-    border-bottom: 1px dotted #DEDEDE
+  border: 1px solid #EFEFEF
+
 .success-date-group-title
-  margin: 0 0 0.5rem
+  // margin: 0 0 0.5rem
+  padding: 8px
+  border-bottom: 1px solid #EFEFEF
   font-weight: bold
   font-size: 0.875rem
   @media screen and (max-width: 440px)
     text-align: center
     font-size: 0.75rem
-    margin-bottom: 0.5rem
+    // margin-bottom: 0.5rem
 
 .success-selected-company
   display: flex
   align-items: center
   justify-content: space-between
-  margin: 0 -4px
+  padding: 8px
   border-bottom: 1px dotted #EFEFEF
   &:last-child
     border: 0
-  @media screen and (max-width: 440px)
-    padding: 0 8px
-  .name, .time
-    padding: 4px
+  // @media screen and (max-width: 440px)
+  //   padding: 0 8px
+  // .name, .time
+  //   padding: 4px
   @media screen and (max-width: 440px)
     font-size: 0.875rem
 
