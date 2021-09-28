@@ -156,7 +156,22 @@
           <div class="c head">{{$t('form_your_mobile')}}</div>
           <div class="c">{{user_mobile}}</div>
         </div>
+      </div>
 
+      <div class="success-selected-companies">
+        <div v-for="category in selectedDates" :key="category.id" class="success-date-group">
+          <div class="success-date-group-title">
+            [{{$t(category.i18n.date)}}] {{$t(category.i18n.cat)}}
+          </div>
+          <div v-for="company in selectedCompaniesInCategory(category.id)" :key="company.id" class="success-selected-company">
+            <div class="name">
+              {{$getFromLang(company.name)}}
+            </div>
+            <div class="time">
+              {{company.time.str}}
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </div>
@@ -199,17 +214,19 @@ export default {
   },
   watch: {
     companyId(to) {
-      console.log('to', to)
+      // console.log('to', to)
       if (to) {
         let company = this.companiesInSelectedDate.find((c)=> c.id === to)
         if (company)
-          if (!this.selectedCompanies.find((c)=> c.id === to))
+          // console.log("Watch Company Id", !this.selectedCompanies.find((c)=> c.id === to))
+          if (!this.selectedCompanies.find((c)=> c.id === to)) {
             company = Object.assign({}, company)
             company.time = {
               mins: 9 * 60,
               str: '9:00AM'
             }
             this.selectedCompanies.push(company)
+          }
           // this.selectedCompanies.push(Object.assign({}, company))
       }
     }
@@ -222,6 +239,7 @@ export default {
       return this.selectedCompanies.filter((c)=> c.category.id === categoryId)
     },
     addCompany() {
+      console.log('addCompany', this.selectedCompanies.find((c)=> c.id === this.companyId))
       let company = this.companiesInSelectedDate.find((c)=> c.id === this.companyId)
       if (company)
         if (!this.selectedCompanies.find((c)=> c.id === this.companyId))
@@ -340,9 +358,34 @@ export default {
 
 <style lang="stylus" scoped>
 
+.success-selected-companies
+  max-width: 540px
+  margin: 2rem auto 0
+  color: #333
+
+.success-date-group
+  margin: 0 0 1rem
+
+.success-date-group-title
+  margin: 0 0 0.5rem
+  font-weight: bold
+  font-size: 0.875rem
+  @media screen and (max-width: 440px)
+    text-align: center
+    font-size: 0.75rem
+    margin-bottom: 0.5rem
+
+.success-selected-company
+  display: flex
+  align-items: center
+  justify-content: space-between
+  margin: 0 -4px
+  .name, .time
+    padding: 4px
+
 .success-details
   max-width: 540px
-  margin: 1rem auto 0
+  margin: 2rem auto 0
   border: 1px solid #EFEFEF
   color: #333
   .sd-r
@@ -373,6 +416,7 @@ export default {
   .c.head
     font-weight: bold
     border-right: 1px solid #EFEFEF
+    font-size: 0.875rem
     @media screen and (max-width: 440px)
       text-align: center
       font-size: 0.75rem
