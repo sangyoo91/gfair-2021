@@ -249,7 +249,7 @@ export default {
             company = Object.assign({}, company)
             company.time = {
               mins: 9 * 60,
-              str: '9:00AM'
+              str: '09:00'
             }
             this.selectedCompanies.push(company)
             this.companyId =  false
