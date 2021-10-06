@@ -27,12 +27,12 @@
         <router-link :to="{name: 'Companies'}" class="menu-sub-item" :class="{
           active: $route.name === 'Companies'
         }">
-          All Companies
+          {{$t('nav_all_companies')}}
         </router-link>
         <router-link :to="{name: 'Products'}" class="menu-sub-item" :class="{
           active: $route.name === 'Products'
         }">
-          All Products
+          {{$t('nav_all_products')}}
         </router-link>
         <!-- <router-link>
           {{$t('cat_beauty')}}

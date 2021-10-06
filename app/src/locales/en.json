@@ -3,16 +3,31 @@
   "title_general": "Korea Online Trade Meeting",
   "apply_now": "Apply Now",
   "companies": "Korean Companies",
+  "companies_short": "Companies",
   "companies_mast_title": "Korean Companies List",
   "companies_mast_desc": "Here you can find companies you might be interested in.",
   "mast_text": "Korea Online Trade Meeting is one of the premier Trade Meet for small and medium-sized enterprises in Korea. Join us for our Online Trade Meeting and discover how dynamic Korean technologies and qualities can be!",
   "date_verbose": "November 16 ~ November 19 2021",
 
+  "nav_all_companies": "All Companies",
+  "nav_all_products": "All Products",
+
+  "home_1_title": "From anywhere by your convenience, with your computer or phone.",
+  "home_1_text": "Korea Online Trade Meet is held online. This means as long as you have access to the internet, with any smart devices or a computer, you can meet companies you are interested in.",
+
+  "home_2_title": "A wide selection of different companies and products",
+  "home_2_text": "We have a wide selection of companies and products that you can choose from across a variety of industries.",
+
+  "home_cat_title": "Korea Online Trade Meeting Schedule",
+  "home_cat_text": "These are the product categories that will be shown online during the event.",
+
+  "home_products_title": "Featured Products",
+  "home_products_text": "Here are some products that will be available.",
+
   "covid_notice": "😷 Due to COVID-19, our Trade Meet will be held online.",
 
   "products_mast_title": "Products List",
   "products_mast_desc": "Here you can find products you might be interested in.",
-
 
   "cat_all": "All",
   "cat_beauty": "Beauty & Health",
@@ -41,12 +56,19 @@
   "form_your_email": "E-Mail",
   "form_your_mobile": "Mobile",
   "form_companies_wish": "Companies you wish to meet",
+  "form_selected_companies": "Selected Companies",
+  "form_no_companies": "No Companies Selected",
+  "form_select_code": "Select an Invite Code",
+  "form_select_date": "Select a date/category",
+  "form_select_company": "Select a company",
 
   "placeholder_your_company": "Apple Inc.,",
   "placeholder_your_name": "John Doe",
   "placeholder_your_job_position": "Sales Manager",
   "placeholder_your_email": "johndoe@email.com",
-  "placeholder_your_mobile": "000-000-0000"
+  "placeholder_your_mobile": "000-000-0000",
 
+  "form_success_title": "You have successfully applied for G-Fair 2021!",
+  "form_success_text": "We have sent you an e-mail on details of your applications. <br/> Our staff will get back to you as soon as possible."
 
 }

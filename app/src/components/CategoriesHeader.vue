@@ -9,7 +9,7 @@
           {{$t('cat_all')}}
         </div>
         <div class="company-count">
-          {{allCompanies.length}} Companies
+          {{allCompanies.length}} {{$t('companies_short')}}
         </div>
       </div>
     </div>
@@ -24,7 +24,7 @@
           {{$t('cat_beauty')}}
         </div>
         <div class="company-count">
-          {{getCompanyCountByCategoryName('beauty-health')}} Companies
+          {{getCompanyCountByCategoryName('beauty-health')}} {{$t('companies_short')}}
         </div>
       </div>
     </div>
@@ -39,7 +39,7 @@
           {{$t('cat_consumer')}}
         </div>
         <div class="company-count">
-          {{getCompanyCountByCategoryName('consumer-products')}} Companies
+          {{getCompanyCountByCategoryName('consumer-products')}} {{$t('companies_short')}}
         </div>
       </div>
     </div>
@@ -54,7 +54,7 @@
           {{$t('cat_electronics')}}
         </div>
         <div class="company-count">
-          {{getCompanyCountByCategoryName('electronics-electrical-products')}} Companies
+          {{getCompanyCountByCategoryName('electronics-electrical-products')}} {{$t('companies_short')}}
         </div>
       </div>
     </div>
@@ -69,7 +69,7 @@
           {{$t('cat_industrial')}}
         </div>
         <div class="company-count">
-          {{getCompanyCountByCategoryName('industrial-medical-products')}} Companies
+          {{getCompanyCountByCategoryName('industrial-medical-products')}} {{$t('companies_short')}}
         </div>
       </div>
     </div>

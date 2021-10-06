@@ -3,35 +3,65 @@
   "title_general": "Buổi họp Thương mại Trực tuyến Hàn Quốc",
   "apply_now": "Đăng ký ngay",
   "companies": "Các doanh nghiệp Hàn Quốc",
+  "companies_short": "Các doanh nghiệp",
   "companies_mast_title": "Danh sách doanh nghiệp Hàn Quốc",
   "companies_mast_desc": "Tại đây bạn có thể tìm thấy các doanh nghiệp hoặc sản phẩm mà bạn có thể quan tâm.",
   "mast_text": "Buổi họp Thương mại Trực tuyến Hàn Quốc là một trong những Buổi họp Thương mại hàng đầu dành cho các doanh nghiệp vừa và nhỏ tại Hàn Quốc. Hãy tham gia Buổi họp Thương mại Trực tuyến của chúng tôi và khám phá những công nghệ năng động và chất lượng của Hàn Quốc như thế nào!",
-  "date_verbose": "November 16 ~ November 19",
+  "date_verbose": "16 ~ 19 tháng 11",
+
+  "nav_all_companies": "Tất cả các công ty",
+  "nav_all_products": "Tất cả sản phẩm",
+
+  "home_1_title": "Bạn có thể thoải mái tham dự ở bất cứ nơi đâu với máy tính hoặc điện thoại.",
+  "home_1_text": "Buổi họp Thương mại Trực tuyến Hàn Quốc được tổ chức trực tuyến. Điều này có nghĩa là chỉ cần bạn có thể truy cập internet, với bất kỳ thiết bị thông minh hoặc máy tính nào, bạn có thể gặp gỡ các công ty mà bạn quan tâm.",
+
+  "home_2_title": "Nhiều sự lựa chọn các công ty và sản phẩm đa dạng khác nhau",
+  "home_2_text": "Chúng tôi mang đến cho bạn nhiều công ty và sản phẩm khác nhau mà bạn có thể lựa chọn với nhiều ngành nghề vô cùng phong phú đa dạng.",
+
+  "home_cat_title": "Lịch trình Buổi họp Thương mại Trục tuyến Hàn Quốc",
+  "home_cat_text": "Đây là các danh mục sản phẩm sẽ có mặt và trưng bày trực tuyến trong sự kiện.",
+
+  "home_products_title": "Sản phẩm nổi bật",
+  "home_products_text": "Đây là một số sản phẩm sẽ có sẵn.",
 
   "covid_notice": "😷 Do COVID-19 Buổi họp Thương mại của chúng ta sẽ được tổ chức trực tuyến",
+
+  "products_mast_title": "Danh sách sản phẩm",
+  "products_mast_desc": "Tại đây bạn có thể tìm thấy các sản phẩm mà bạn quan tâm.",
 
   "cat_all": "Tất cả",
   "cat_beauty": "Sắc đẹp & Sức khỏe",
   "cat_consumer": "Sản phẩm tiêu dùng",
   "cat_electronics": "Sản phẩm Điện tử & điện gia dụng",
   "cat_industrial": "Vật liệu công nghiệp & Sản phẩm y tế",
-  "products_see_all": "See All",
+
+  "products_see_all": "Hẹn gặp tất cả",
 
   "apply_form_mast_title": "Đăng kí Buổi họp Thương mại Trực tuyến",
   "apply_form_mast_desc": "Sau khi chúng tôi nhận được đơn đăng ký của bạn, nhân viên của chúng tôi sẽ cố gắng nhanh chóng liên hệ với bạn qua e-mail và/hoặc di động.",
 
-  "form_invite_code": "Invite Code",
+  "form_invite_code": "MÃ MỜI",
   "form_your_company": "TÊN CÔNG TY",
   "form_your_name": "HỌ TÊN",
   "form_your_job_position": "CHỨC VỤ",
   "form_your_email": "E-MAIL",
   "form_your_mobile": "SỐ ĐIỆN THOẠI",
   "form_companies_wish": "CÁC DOANH NGHIỆP BẠN MUỐN GẶP",
+  "form_selected_companies": "Các công ty được chọn",
+  "form_no_companies": "Không có công ty nào được chọn",
+  "form_select_code": "Chọn mã mời",
+  "form_select_date": "Chọn một ngày",
+  "form_select_company": "Chọn một công ty",
+
 
   "date_beauty": "16/11",
   "date_consumer": "17/11",
   "date_electronics": "18/11",
   "date_industrial": "19/11",
 
-  "lang": "Ngôn ngữ"
+  "lang": "Ngôn ngữ",
+
+  "form_success_title": "Bạn đã đăng ký thành công cho G-Fair 2021!",
+  "form_success_text": "Chúng tôi đã gửi cho bạn một e-mail về chi tiết các ứng dụng của bạn. <br/> Nhân viên của chúng tôi sẽ liên hệ lại với bạn trong thời gian sớm nhất."
+
 }

@@ -3,9 +3,9 @@
   <section class="section section--categories">
     <div class="container">
       <div class="text text-center">
-        <h2>Korea Trade Meeting Schedule</h2>
+        <h2>{{$t('home_cat_title')}}</h2>
         <p>
-          These are the product categories that will be shown online during the event.
+          {{$t('home_cat_text')}}
         </p>
       </div>
       <div class="categories-wrapper">

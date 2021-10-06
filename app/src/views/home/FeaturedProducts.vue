@@ -2,9 +2,9 @@
   <section class="section section--featured-products">
     <div class="container no-flex">
       <div class="text text-center">
-        <h2>Featured Products</h2>
+        <h2>{{$t('home_products_title')}}</h2>
         <p>
-          Here are some products that will be available.
+          {{$t('home_products_text')}}
         </p>
       </div>
       <div class="products-list">

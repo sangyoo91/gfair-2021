@@ -68,6 +68,7 @@ export default {
       e.stopImmediatePropagation()
       if (this.langs.find((l)=> l.lang === lang)) {
         this.$i18n.locale = lang
+        localStorage.setItem('lang', lang)
       }
       this.isDropdownOpen = false
     }

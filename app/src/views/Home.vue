@@ -30,10 +30,9 @@
         <div class="row">
           <div class="col-12 col-sm-12 col-md-6">
             <div class="text">
-              <h2>From anywhere by your convenience, with your computer or phone.</h2>
+              <h2>{{$t('home_1_title')}}</h2>
               <p>
-                Korea Online Trade Meet is held online. This means as long as you have access to the internet,
-                with any smart devices or a computer, you can meet companies you are interested in.
+                {{$t('home_1_text')}}
               </p>
             </div>
           </div>
@@ -56,9 +55,9 @@
           </div>
           <div class="col-12 col-sm-12 col-md-6 ">
             <div class="text">
-              <h2>A wide selection of different companies and products</h2>
+              <h2>{{$t('home_2_title')}}</h2>
               <p>
-                We have a wide selection of companies and products that you can choose from across a variety of industries.
+                {{$t('home_2_text')}}
               </p>
             </div>
           </div>

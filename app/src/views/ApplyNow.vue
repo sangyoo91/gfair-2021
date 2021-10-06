@@ -29,7 +29,7 @@
                   error: errorKey === 'user_code',
                   'not-selected': !user_code
                 }" ref="user_code">
-                  <option :value="false" disabled hidden>Select an Invite Code</option>
+                  <option :value="false" disabled hidden>{{$t('form_select_code')}}</option>
                   <option :value="code" v-for="code in codes" :key="code.id">
                     {{code.code}}
                   </option>
@@ -98,7 +98,7 @@
                     <select v-model="categoryId" placeholder="Choose a date" :class="{
                       'not-selected': !categoryId
                     }">
-                      <option :value="false" disabled hidden>Select a date/category</option>
+                      <option :value="false" disabled hidden>{{$t('form_select_date')}}</option>
                       <option :value="category.id" v-for="category in categories" :key="category.id">
                         [{{$t(category.i18n.date)}}] {{$t(category.i18n.cat)}}
                       </option>
@@ -111,7 +111,7 @@
                       'not-selected': !companyId,
                       'disabled': !categoryId
                     }">
-                      <option :value="false" disabled hidden>Select a company</option>
+                      <option :value="false" disabled hidden>{{$t('form_select_company')}}</option>
                       <option :value="company.id" v-for="company in companiesInSelectedDate" :key="company.id">
                         [{{company.boothNumber}}] {{$getFromLang(company.name)}}
                       </option>
@@ -119,7 +119,7 @@
                   </div>
                 </div>
               </div>
-              <h4>Selected Companies</h4>
+              <h4>{{$t('form_selected_companies')}}</h4>
               <div v-if="selectedCompanies.length > 0">
                 <div v-for="category in selectedDates" :key="category.id" class="date-group">
                   <div class="date-group-title">
@@ -134,7 +134,7 @@
                 </div>
               </div>
               <div class="selected-companies-message" v-else>
-                No Companies Selected
+                {{$t('form_no_companies')}}
               </div>
             </div>
 
@@ -151,10 +151,8 @@
 
       <Checkmark/>
       <h2 class="success-title">You have successfully applied for G-Fair 2021!</h2>
-      <p class="success-desc">
-        We have sent you an e-mail on details of your applications.
-        <br/>
-        Our staff will get back to you as soon as possible.
+      <p class="success-desc" v-html="$t('form_success_text')">
+
       </p>
 
       <div class="success-details">

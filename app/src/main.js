@@ -45,6 +45,10 @@ Vue.prototype.$getFromLang = (data) => {
   return data[i18n.locale] ? data[i18n.locale] : data.en
 }
 
+if (['en', 'vn'].includes(localStorage.getItem('lang'))) {
+  i18n.locale = localStorage.getItem('lang')
+}
+
 new Vue({
   router,
   store,
