@@ -366,8 +366,15 @@ export default {
           window.scrollTo(0, 0)
         })
         return this.$toast.success("Application complete")
-      }).catch(()=> {
-        return this.$toast.error("Something went wrong")
+      }).catch((e)=> {
+        console.dir(e)
+        const {response} = e
+
+        if (response && response.data && !response.data.success && response.data.reason && response.data.reason === 'ALREADY_APPLIED') {
+          return this.$toast.error("You have already applied with this E-mail/Mobile")
+        } else {
+          return this.$toast.error("Something went wrong")
+        }
       }).finally(()=> {
         this.isLoading = false
       })
